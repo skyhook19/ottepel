@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.domain.Parent;
+import net.domain.contacts.Parent;
 
 import java.util.Date;
 import java.util.List;

@@ -1,6 +1,6 @@
 package net.service.converters;
 
-import net.domain.User;
+import net.domain.users.User;
 import net.dto.UserDto;
 import org.springframework.stereotype.Component;
 

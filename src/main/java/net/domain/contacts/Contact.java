@@ -1,4 +1,4 @@
-package net.domain;
+package net.domain.contacts;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +18,7 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String login;
     private String name;
     private String lastName;

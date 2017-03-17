@@ -1,7 +1,9 @@
 package net.controllers;
 
-import net.domain.Role;
+import net.domain.users.Role;
+import net.dto.ContactDto;
 import net.dto.UserDto;
+import net.service.ContactService;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,12 @@ import java.util.Map;
 @Controller
 public class MainController {
     private final UserService userService;
+    private final ContactService contactService;
 
     @Autowired
-    public MainController(UserService userService) {
+    public MainController(UserService userService, ContactService contactService) {
         this.userService = userService;
+        this.contactService = contactService;
     }
 
     @RequestMapping("/login")
@@ -50,11 +54,11 @@ public class MainController {
 
     @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
     public String addCollaborator(@RequestParam("name") String name,
-                          @RequestParam("login") String login,
-                          @RequestParam("email") String email,
-                          @RequestParam("password") String pass,
-                          @RequestParam(value = "roles", required = false) List<String> rolesName,
-                          Map<String, Object> model) {
+                                  @RequestParam("login") String login,
+                                  @RequestParam("email") String email,
+                                  @RequestParam("password") String pass,
+                                  @RequestParam(value = "roles", required = false) List<String> rolesName,
+                                  Map<String, Object> model) {
         boolean saved = userService.addCollaborator(login, name, pass, rolesName, email);
         if (!saved) {
             model.put("error", "Пользователь с таким логином уже существует.");
@@ -84,4 +88,19 @@ public class MainController {
         return "adminka";
     }
 
+
+    @RequestMapping(value = {"/contact/{login}"}, method = RequestMethod.GET)
+    public String getNewsByDate(@PathVariable(value = "login", required = false) String login,
+                                Map<String, Object> model) {
+        ContactDto contact = contactService.getContact(login);
+        model.put("contact", contact);
+        return "";
+    }
+
+    @RequestMapping(value = {"/contacts"}, method = RequestMethod.GET)
+    public String getNewsByDate(Map<String, Object> model) {
+        List<ContactDto> contacts = contactService.getAllContacts();
+        model.put("contacts", contacts);
+        return "";
+    }
 }

@@ -1,6 +1,6 @@
 package net.service.converters;
 
-import net.domain.Contact;
+import net.domain.contacts.Contact;
 import net.dto.ContactDto;
 import org.springframework.stereotype.Component;
 

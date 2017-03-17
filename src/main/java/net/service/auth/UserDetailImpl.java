@@ -1,6 +1,6 @@
 package net.service.auth;
 
-import net.domain.User;
+import net.domain.users.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

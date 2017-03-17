@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.domain.Role;
+import net.domain.users.Role;
 
 import java.util.List;
 

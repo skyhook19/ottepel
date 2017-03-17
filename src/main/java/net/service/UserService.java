@@ -2,8 +2,8 @@ package net.service;
 
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
-import net.domain.Role;
-import net.domain.User;
+import net.domain.users.Role;
+import net.domain.users.User;
 import net.dto.UserDto;
 import net.service.converters.ConverterUsers;
 import org.apache.commons.lang.RandomStringUtils;

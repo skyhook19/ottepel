@@ -19,7 +19,13 @@ public class ContactService {
         this.converterContact = converterContact;
     }
 
-    public List<ContactDto> getAllContact() {
+    public List<ContactDto> getAllContacts() {
         return converterContact.convertToContactDto(daoContact.findAll());
     }
+
+    public ContactDto getContact(String login) {
+        return converterContact.convertToContactDto(daoContact.findByLogin());
+    }
+
+
 }

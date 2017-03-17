@@ -1,4 +1,4 @@
-package net.domain;
+package net.domain.contacts;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
