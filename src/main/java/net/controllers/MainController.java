@@ -27,6 +27,15 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String addContact(@RequestParam("name") String name,
+                             @RequestParam("lastName") String lastname,
+                             Map<String, Object> model) {
+        boolean added = userService.addContact(name, lastname);
+        return "";
+    }
+
+
     @RequestMapping(value = {"/adminka", "/adminka/{column}/{sort}"}, method = RequestMethod.GET)
     public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
                                 @PathVariable(value = "sort", required = false) String sort,
@@ -39,14 +48,14 @@ public class MainController {
         return "adminka";
     }
 
-    @RequestMapping(value = {"/addUser"}, method = RequestMethod.POST)
-    public String addUser(@RequestParam("name") String name,
+    @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
+    public String addCollaborator(@RequestParam("name") String name,
                           @RequestParam("login") String login,
                           @RequestParam("email") String email,
                           @RequestParam("password") String pass,
                           @RequestParam(value = "roles", required = false) List<String> rolesName,
                           Map<String, Object> model) {
-        boolean saved = userService.addUser(login, name, pass, rolesName, email);
+        boolean saved = userService.addCollaborator(login, name, pass, rolesName, email);
         if (!saved) {
             model.put("error", "Пользователь с таким логином уже существует.");
         } else {
@@ -57,4 +66,22 @@ public class MainController {
         model.put("sort", "asc");
         return "adminka";
     }
+
+
+    @RequestMapping(value = {"/addContact"}, method = RequestMethod.POST)
+    public String addUser(@RequestParam("name") String name,
+                          @RequestParam("lastName") String lastName,
+                          Map<String, Object> model) {
+        boolean saved = userService.addContact(name, lastName);
+        if (!saved) {
+            model.put("error", "Пользователь с таким логином уже существует.");
+        } else {
+            model.put("completed", "Успешно");
+        }
+//        List<UserDto> users = userService.gitAllUsers(null, null);
+//        model.put("users", users);
+//        model.put("sort", "asc");
+        return "adminka";
+    }
+
 }

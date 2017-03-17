@@ -10,14 +10,12 @@ import java.util.stream.Collectors;
 @Component
 public class ConverterUsers {
     public List<UserDto> convertToUserDto(List<User> users) {
-        return users.stream().map(this::userToUserDto).collect(Collectors.toList());
+        return users.stream().map(this::userToCollaboratorDto).collect(Collectors.toList());
     }
 
-    private UserDto userToUserDto(User user) {
+    private UserDto userToCollaboratorDto(User user) {
         return UserDto.builder()
-                .email(user.getEmail())
                 .login(user.getLogin())
-                .name(user.getName())
                 .roles(user.getRoles()).build();
     }
 }

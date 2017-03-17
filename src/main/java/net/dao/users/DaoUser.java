@@ -1,7 +1,6 @@
-package net.dao;
+package net.dao.users;
 
-
-import net.domain.Role;
+import net.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +9,9 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface DaoRole extends CrudRepository<Role, Integer> {
+public interface DaoUser extends CrudRepository<User, String> {
+    User findOneByLogin(String login);
+
     @Override
-    List<Role> findAll();
+    List<User> findAll();
 }
