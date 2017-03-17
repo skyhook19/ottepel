@@ -1,7 +1,6 @@
 package net.controllers;
 
 import net.domain.users.Role;
-import net.dto.ContactDto;
 import net.dto.UserDto;
 import net.service.ContactService;
 import net.service.UserService;
@@ -72,35 +71,5 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = {"/addContact"}, method = RequestMethod.POST)
-    public String addUser(@RequestParam("name") String name,
-                          @RequestParam("lastName") String lastName,
-                          Map<String, Object> model) {
-        boolean saved = userService.addContact(name, lastName);
-        if (!saved) {
-            model.put("error", "Пользователь с таким логином уже существует.");
-        } else {
-            model.put("completed", "Успешно");
-        }
-//        List<UserDto> users = userService.getAllUsers(null, null);
-//        model.put("users", users);
-//        model.put("sort", "asc");
-        return "adminka";
-    }
 
-
-    @RequestMapping(value = {"/contact/{login}"}, method = RequestMethod.GET)
-    public String getNewsByDate(@PathVariable(value = "login", required = false) String login,
-                                Map<String, Object> model) {
-        ContactDto contact = contactService.getContact(login);
-        model.put("contact", contact);
-        return "";
-    }
-
-    @RequestMapping(value = {"/contacts"}, method = RequestMethod.GET)
-    public String getNewsByDate(Map<String, Object> model) {
-        List<ContactDto> contacts = contactService.getAllContacts();
-        model.put("contacts", contacts);
-        return "";
-    }
 }
