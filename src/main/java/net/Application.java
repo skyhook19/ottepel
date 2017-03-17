@@ -43,7 +43,7 @@ public class Application {
                     .antMatchers("/**", "/").permitAll().anyRequest()
                     .fullyAuthenticated().and().formLogin().loginPage("/login")
                     .failureUrl("/login?error").permitAll()
-                    .defaultSuccessUrl("/")
+                    .defaultSuccessUrl("/adminka")
                     .and()
                     .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                     .permitAll();
