@@ -13,5 +13,5 @@ public interface DaoContact extends CrudRepository<Contact, Long> {
     @Override
     List<Contact> findAll();
 
-    Contact findByLogin();
+    Contact findOneByLogin(String login);
 }

@@ -24,7 +24,7 @@ public class ContactService {
     }
 
     public ContactDto getContact(String login) {
-        return converterContact.convertToContactDto(daoContact.findByLogin());
+        return converterContact.convertToContactDto(daoContact.findOneByLogin(login));
     }
 
 
