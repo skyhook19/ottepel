@@ -40,7 +40,7 @@ public class MainController {
     public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
                                 @PathVariable(value = "sort", required = false) String sort,
                                 Map<String, Object> model) {
-        List<UserDto> users = userService.gitAllUsers(column, sort);
+        List<UserDto> users = userService.getAllUsers(column, sort);
         List<Role> roles = userService.getAllRoles();
         model.put("roles", roles);
         model.put("users", users);
@@ -61,7 +61,7 @@ public class MainController {
         } else {
             model.put("completed", "Успешно");
         }
-        List<UserDto> users = userService.gitAllUsers(null, null);
+        List<UserDto> users = userService.getAllUsers(null, null);
         model.put("users", users);
         model.put("sort", "asc");
         return "adminka";
@@ -78,7 +78,7 @@ public class MainController {
         } else {
             model.put("completed", "Успешно");
         }
-//        List<UserDto> users = userService.gitAllUsers(null, null);
+//        List<UserDto> users = userService.getAllUsers(null, null);
 //        model.put("users", users);
 //        model.put("sort", "asc");
         return "adminka";

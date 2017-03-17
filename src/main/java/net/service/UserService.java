@@ -40,7 +40,7 @@ public class UserService {
         contactRole = daoRole.findByAuthority("ROLE_CONTACT");
     }
 
-    public List<UserDto> gitAllUsers(String column, String sort) {
+    public List<UserDto> getAllUsers(String column, String sort) {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
 
@@ -63,6 +63,16 @@ public class UserService {
         return true;
     }
 
+    public boolean addContact(String name, String lastName) {
+        User contact = new User();
+        contact.setLogin(generateLogin(name, lastName));
+        contact.setName(name);
+        contact.setPassword(generatePassword());
+        contact.setRoles(Arrays.asList(contactRole));
+        contact.setEnabled(false);
+        return true;
+    }
+
     private List<Role> getRoleByRoleName(List<String> roles) {
         List<Role> rolesResult = new ArrayList<>();
         if (roles == null) {
@@ -78,16 +88,6 @@ public class UserService {
         return rolesResult;
     }
 
-    public boolean addContact(String name, String lastName) {
-        User contact = new User();
-        contact.setLogin(generateLogin(name, lastName));
-        contact.setName(name);
-        contact.setPassword(generatePassword());
-        contact.setRoles(Arrays.asList(contactRole));
-        contact.setEnabled(false);
-        return true;
-    }
-
     private String generatePassword() {
         return RandomStringUtils.randomAlphabetic(passwordSize);
     }
@@ -96,4 +96,6 @@ public class UserService {
         Calendar calendar = Calendar.getInstance();
         return name.trim().substring(0, 2) + lastName.trim().substring(0, 2) + calendar.get(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.YEAR);
     }
+
+
 }
