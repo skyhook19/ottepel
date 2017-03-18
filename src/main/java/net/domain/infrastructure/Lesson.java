@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 public class Lesson {
     @Id
     private long id;
-    @OneToMany
+    @ManyToOne
     private Paragraf paragraf;
     private int order;
 }

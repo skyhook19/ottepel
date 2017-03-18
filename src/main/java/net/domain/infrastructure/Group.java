@@ -10,6 +10,7 @@ import net.domain.employee.Employee;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 @Data
@@ -21,6 +22,7 @@ public class Group {
     @Id
     private long id;
     private String name;
+    @ManyToOne
     private Сourses сourses;
     @ManyToMany
     private List<Lesson> lessons;
