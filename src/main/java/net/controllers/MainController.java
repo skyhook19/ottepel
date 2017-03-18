@@ -31,7 +31,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String root(Map<String, Object> model) {
-        return "redirect:https://lab4up.ru/";
+        return "redirect:http://platform.lab4up.ru/";
     }
 
     @RequestMapping("/auth_ruk")
