@@ -100,8 +100,9 @@ public class UserService {
             return rolesResult;
         }
         for (String role : roles) {
+            String rolet = "ROLE_" + role;
             for (Role role1 : getAllRoles()) {
-                if (role.equals(role1.getAuthority())) {
+                if (rolet.equals(role1.getAuthority())) {
                     rolesResult.add(role1);
                 }
             }

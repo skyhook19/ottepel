@@ -69,7 +69,7 @@ public class EmployeeController {
     }
 
 
-    //addEmployee
+    //employees_list
     @RequestMapping("/employees_list")
     public String employeesList(Map<String, Object> model) {
         List<EmployeeDto> employees = employeeService.getAllEmployees();
