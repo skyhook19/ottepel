@@ -19,10 +19,8 @@ public class Employee {
     @Id
     @GeneratedValue
     private long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Account account;
-
     @Column(unique = true)
     private String login;
     private String name;
@@ -31,10 +29,4 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private Date dob;//дата рождения
-    private boolean enabled;
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
 }

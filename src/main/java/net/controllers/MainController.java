@@ -39,10 +39,6 @@ public class MainController {
         return "auth_ruk";
     }
 
-    @RequestMapping("/employees_list")
-    public String employees_list(Map<String, Object> model) {
-        return "employees_list";
-    }
 
     @RequestMapping("/groups_list")
     public String group_list(Map<String, Object> model) {
@@ -73,7 +69,7 @@ public class MainController {
                                   @RequestParam("password") String pass,
                                   @RequestParam(value = "roles", required = false) List<String> rolesName,
                                   Map<String, Object> model) {
-        boolean saved = userService.addCollaborator(login, name, pass, rolesName, email);
+        boolean saved = userService.addCollaborator(login, pass, rolesName, email);
         if (!saved) {
             model.put("error", "Пользователь с таким логином уже существует.");
         } else {

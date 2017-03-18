@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import net.domain.Gender;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +20,6 @@ public class EmployeeDto {
     private String phoneNumber;
     private Gender gender;
     private Date dob;//дата рождения
+    private String email;
+    private List<String> roles;
 }
