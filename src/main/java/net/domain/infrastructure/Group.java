@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.domain.contacts.Contact;
+import net.domain.employee.Employee;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

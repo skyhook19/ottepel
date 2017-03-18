@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.domain.Gender;
-import net.domain.account.Account;
+import net.domain.infrastructure.Account;
 
 import javax.persistence.*;
 import java.util.Date;

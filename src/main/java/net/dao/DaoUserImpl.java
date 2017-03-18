@@ -1,6 +1,6 @@
 package net.dao;
 
-import net.domain.account.Account;
+import net.domain.infrastructure.Account;
 import net.domain.users.User;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
