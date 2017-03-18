@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 public class ContactService {
-    public static final String DATE_TIME_FORMAT = "yyyy-MM-dd";
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd";
     private final DaoContact daoContact;
     private final UserService userService;
     private final ConverterContact converterContact;

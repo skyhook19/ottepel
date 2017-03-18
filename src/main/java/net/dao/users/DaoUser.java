@@ -15,4 +15,5 @@ public interface DaoUser extends CrudRepository<User, String> {
     @Override
     List<User> findAll();
 
+    List<User> findByLoginIn(List<String> logins);
 }

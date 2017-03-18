@@ -1,15 +1,16 @@
 package net;
 
-import net.dao.DaoUserImpl;
 import net.dao.contacts.DaoContact;
+import net.dao.employee.DaoEmployee;
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
 import net.domain.Gender;
 import net.domain.contacts.Contact;
 import net.domain.contacts.Parent;
+import net.domain.employee.Employee;
+import net.domain.infrastructure.Account;
 import net.domain.users.Role;
 import net.domain.users.User;
-import net.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -33,21 +34,19 @@ public class TmpConfig {
     private final DaoUser daoUser;
     private final DaoRole daoRole;
     private final DaoContact daoContact;
-    private final DaoUserImpl daoUserImpl;
-    private final ContactService contactService;
+    private final DaoEmployee daoEmployee;
 
     @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl, ContactService contactService) {
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoEmployee daoEmployee) {
         this.daoUser = daoUser;
         this.daoRole = daoRole;
         this.daoContact = daoContact;
-        this.daoUserImpl = daoUserImpl;
-        this.contactService = contactService;
+        this.daoEmployee = daoEmployee;
     }
 
     @PostConstruct
     public void init() {
-        initUsers();
+        initRyk();
         newContact();
     }
 
@@ -78,22 +77,38 @@ public class TmpConfig {
         System.out.println(all);
     }
 
-    private void initUsers() {
+    private void initRyk() {
         daoRole.save(roles.values());
         User user = User.builder()
                 .email("user@mail.com")
                 .login("user")
                 .password(new BCryptPasswordEncoder().encode("user"))
                 .enabled(true)
-                .roles(Arrays.asList(roles.get("USER"), roles.get("ADMIN"))).build();
+                .roles(Arrays.asList(roles.get("RUK"), roles.get("TEACHER"))).build();
         daoUser.save(user);
+        Account account = Account.builder()
+                .name("моя супер школа")
+                .description("моя супер школа")
+                .build();
+        Employee employee = Employee.builder()
+                .login("user")
+                .name("Аркадий Михайлович")
+                .dob(new Date())
+                .phoneNumber("279-569")
+                .gender(Gender.MALE)
+                .lastName("Гаврилов")
+                .account(account)
+                .build();
+        daoEmployee.save(employee);
+
+
         User contact = User.builder()
                 .email("u3ser@mail.com")
                 .login("use3r")
                 .password(new BCryptPasswordEncoder().encode("use3r"))
                 .enabled(true)
                 .roles(Arrays.asList(roles.get("CONTACT"))).build();
-        daoUser.save(user);
+        daoUser.save(contact);
 
 
         Iterable<User> all = daoUser.findAll();
