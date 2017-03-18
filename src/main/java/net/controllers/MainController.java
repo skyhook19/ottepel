@@ -56,7 +56,7 @@ public class MainController {
 
     @RequestMapping("/login")
     public String login(Map<String, Object> model) {
-        return "login";
+        return "auth_all";
     }
 
 
@@ -88,7 +88,7 @@ public class MainController {
         model.put("roles", roles);
         model.put("users", users);
         model.put("sort", "asc".equals(sort) ? "desc" : "asc");
-        return "adminka";
+        return "old/adminka";
     }
 
    /* @RequestMapping(value = {"/tokensignin"}, method = RequestMethod.POST)
