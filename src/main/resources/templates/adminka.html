@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="google-signin-client_id" content="335218463881-7gd33rfh03tbhkn5uel8v1nh2ie1i1j5.apps.googleusercontent.com">
     <title>News</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -144,6 +145,7 @@
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <input type="submit" class="btn btn-primary" value="Регистрация">
                                         <input type="reset" class="btn btn-default" value="Очистить форму">
+                                        <a href="#" onclick="signOut();">Sign out</a>
                                     </div>
                                 </div>
                             </form>
@@ -233,5 +235,24 @@
     }
     document.getElementById("search").onclick = search;
 </script>
+
+<!-- script for signing out from google account -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+    function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
 </body>
 </html>

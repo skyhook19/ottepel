@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="google-signin-client_id" content="335218463881-7gd33rfh03tbhkn5uel8v1nh2ie1i1j5.apps.googleusercontent.com">
     <title>News</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -96,6 +97,8 @@
                                 <button type="submit" class="btn btn-default">Войти</button>
                             </div>
                         </div>
+
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </form>
                 </div>
             </div>
@@ -126,5 +129,21 @@
         window.location.replace("/date/" + date);
     }
     document.getElementById("search").onclick = search;</script>
+
+<!-- script for signing in to google account -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    function onSignIn(googleUser) {
+        var id_token = googleUser.getAuthResponse().id_token;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/tokensignin');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
+    }
+</script>
+
 </body>
 </html>
