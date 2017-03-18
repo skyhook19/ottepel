@@ -27,6 +27,7 @@ public class TmpConfig {
         roles.put("ADMIN", Role.builder().authority("ROLE_ADMIN").build());
         roles.put("USER", Role.builder().authority("ROLE_USER").build());
         roles.put("CONTACT", Role.builder().authority("ROLE_CONTACT").build());
+        roles.put("RUK", Role.builder().authority("ROLE_RUK").build());
     }
 
     private final DaoUser daoUser;

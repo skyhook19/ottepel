@@ -40,6 +40,7 @@ public class UserService {
     @PostConstruct
     public void init() {
         contactRole = daoRole.findByAuthority("ROLE_CONTACT");
+        contactRole = daoRole.findByAuthority("ROLE_RUK");
     }
 
     public List<UserDto> getAllUsers() {
@@ -100,8 +101,33 @@ public class UserService {
         return name.trim().substring(0, 2) + lastName.trim().substring(0, 2) + calendar.get(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.YEAR);
     }
 
-    private User getCurrentUser() {
+
+    public void addRuc(String name, String login, String pass, String email) {
+        addCollaborator(login, name, pass, Arrays.asList("ROLE_RUK"), email);
+    }
+
+    public boolean editRuc(String name, String login, String pass, String email, String oldPass) {
+        User ruk = daoUser.findOneByLogin(login);
+        if (ruk.getPassword().equals(new BCryptPasswordEncoder().encode(oldPass))) {
+            ruk.setName(name);
+            ruk.setPassword(new BCryptPasswordEncoder().encode(pass));
+            ruk.setEmail(email);
+            daoUser.save(ruk);
+            return true;
+        }
+        return false;
+    }
+
+    public UserDto getUser(String login) {
+        return converterUsers.userToCollaboratorDto(daoUser.findOneByLogin(login));
+    }
+
+    public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return daoUser.findOneByLogin(authentication.getName());
+    }
+
+    public UserDto getCurrentUserDto() {
+        return converterUsers.userToCollaboratorDto(getCurrentUser());
     }
 }
