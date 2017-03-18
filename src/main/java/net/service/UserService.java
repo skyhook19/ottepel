@@ -148,6 +148,6 @@ public class UserService {
     }
 
     public List<User> getAllUsersByLogin(List<String> logins) {
-        return daoUser.findByLoginIn(logins);
+        return daoUser.findByLoginInOrderByLogin(logins);
     }
 }

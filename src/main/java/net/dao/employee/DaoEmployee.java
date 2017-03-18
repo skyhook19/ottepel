@@ -17,4 +17,6 @@ public interface DaoEmployee extends CrudRepository<Employee, Long> {
     Employee findOneByLogin(String login);
 
     List<Employee> findByAccount(Account account);
+
+    List<Employee> findByAccountOrderByLogin(Account account);
 }
