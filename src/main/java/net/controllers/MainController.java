@@ -128,4 +128,23 @@ public class MainController {
             System.out.println("Invalid ID token.");
         }
     }*/
+
+    /**
+     * временно лежат тут
+     */
+    @RequestMapping(value = {"/programm"}, method = RequestMethod.GET)
+    public String programm(Map<String, Object> mdel) {
+        return "programm";
+    }
+
+    @RequestMapping(value = {"/registrate_account"}, method = RequestMethod.GET)
+    public String registrate_account(Map<String, Object> mdel) {
+        return "registrate_account";
+    }
+
+    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.GET)
+    public String company(Map<String, Object> mdel) {
+        return "reg_company";
+    }
+
 }
