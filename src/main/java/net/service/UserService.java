@@ -63,13 +63,6 @@ public class UserService {
     public List<UserDto> getAllUsers() {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
-
-    public List<EmployeeDto> getAllEmployees() {
-        List<EmployeeDto> byAccount = converterEmployee.convertToEmployeeDto(
-                daoEmployee.findByAccount(daoEmployee.findOneByLogin(getCurrentUserLogin()).getAccount()));
-        return byAccount;
-    }
-
     private String getCurrentUserLogin() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
