@@ -1,6 +1,7 @@
 package net.controllers;
 
 import net.domain.users.Role;
+import net.domain.users.User;
 import net.dto.UserDto;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,4 +204,20 @@ public class MainController {
         return "reg_company";
     }
 
+    @RequestMapping("/dashboard")
+    public String dashboard(Map<String, Object> model){
+        User user = userService.getCurrentUser();
+        Role role = user.getRoles().get(0);
+
+        switch (role.getAuthority()){
+            case "ROLE_CONTACT":
+                return "dashboard_student";
+            case "TEACHER":
+                return "dashboard_employee";
+            case "ROLE_RUK":
+                return "dashboard_ruk";
+            default:
+                return "login";
+        }
+    }
 }
