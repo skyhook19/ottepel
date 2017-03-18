@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -296,33 +296,12 @@
                             <th>Права</th>
                             <th>Email</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="#">Максим Гурченков</a></td>
-                            <td>maxim</td>
-                            <td>Администратор</td>
-                            <td>lab4up@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><a href="#">Дмитрий Дергунов</a></td>
-                            <td>dergunov</td>
-                            <td>Администратор</td>
-                            <td>dmitry05670916@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><a href="#">Кайрат Сагалеев</a></td>
-                            <td>somelogin</td>
-                            <td>Администратор</td>
-                            <td>some@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td><a href="#">Сергей Косов</a></td>
-                            <td>other_some_login</td>
-                            <td>Администратор</td>
-                            <td>other_email@gmail.com</td>
+                        <tr th:each="employee, iterationStatus: ${employees}">
+                            <td th:text="${iterationStatus.count}">1</td>
+                            <td><a th:text="${employee.name}" th:href="'/employee/ + ${employee.login}'">Максим Гурченков</a></td>
+                            <td th:text="${employee.login}">maxim</td>
+                            <td th:text="${employee.roles[0].authority}">Администратор</td>1
+                            <td th:text="${employee.email}">lab4up@gmail.com</td>
                         </tr>
                     </table>
                 </div>
