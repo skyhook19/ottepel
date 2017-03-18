@@ -134,14 +134,17 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
     function onSignIn(googleUser) {
-        var id_token = googleUser.getAuthResponse().id_token;
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/tokensignin');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            console.log('Signed in as: ' + xhr.responseText);
-        };
-        xhr.send('idtoken=' + id_token);
+        var tokenId = googleUser.getAuthResponse().id_token;
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/tokensignin",
+                data: id_token,
+                dataType: 'json',
+                timeout: 600000
+            });
+        });
     }
 </script>
 
