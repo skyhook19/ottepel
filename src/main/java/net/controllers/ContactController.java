@@ -41,27 +41,27 @@ public class ContactController {
     @RequestMapping(value = {"/addContact"}, method = RequestMethod.POST)
     public String updateContactInfo(@RequestParam(value = "name", required = true) String name,
                                     @RequestParam(value = "lastName", required = true) String lastName,
-                                    @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
-                                    @RequestParam(value = "gender", required = false) String gender,
+                                    @RequestParam(value = "phone", required = false) String phoneNumber,
+                                    @RequestParam(value = "sex", required = false) String gender,
                                     @RequestParam(value = "age", required = false) int age,
-                                    @RequestParam(value = "dob", required = false) String dob,//дата рождения
-                                    @RequestParam(value = "sourceOfCapital", required = false) String sourceOfCapital,
+                                    @RequestParam(value = "bdate", required = false) String dob,//дата рождения
+                                    @RequestParam(value = "contact", required = false) String sourceOfCapital,
                                     @RequestParam(value = "interests", required = false) String interests,
-                                    @RequestParam(value = "comment", required = false) String comment,
+                                    @RequestParam(value = "note", required = false) String comment,
                                     //parent
-                                    @RequestParam(value = "nameParent", required = false) String nameParent,
-                                    @RequestParam(value = "phoneNumberParent", required = false) String phoneNumberParent,
-                                    @RequestParam(value = "genderParent", required = false) String genderParent,
-                                    @RequestParam(value = "ageParent", required = false) int ageParent,
-                                    @RequestParam(value = "commentParent", required = false) String commentParent,
-                                    @RequestParam(value = "positionParent", required = false) String positionParent,
+                                    @RequestParam(value = "parent1_name", required = false) String nameParent,
+                                    @RequestParam(value = "parent1_phone", required = false) String phoneNumberParent,
+                                    @RequestParam(value = "parent1_sex", required = false) String genderParent,
+                                    @RequestParam(value = "parent1_age", required = false) int ageParent,
+                                    @RequestParam(value = "parent1_position", required = false) String commentParent,
+                                    @RequestParam(value = "parent1_note", required = false) String positionParent,
                                     //paret2
-                                    @RequestParam(value = "nameParent", required = false) String nameParent2,
-                                    @RequestParam(value = "phoneNumberParent", required = false) String phoneNumberParent2,
-                                    @RequestParam(value = "genderParent", required = false) String genderParent2,
-                                    @RequestParam(value = "ageParent", required = false) int ageParent2,
-                                    @RequestParam(value = "commentParent", required = false) String commentParent2,
-                                    @RequestParam(value = "positionParent", required = false) String positionParent2,
+                                    @RequestParam(value = "parent2_name", required = false) String nameParent2,
+                                    @RequestParam(value = "parent2_phone", required = false) String phoneNumberParent2,
+                                    @RequestParam(value = "parent2_sex", required = false) String genderParent2,
+                                    @RequestParam(value = "parent2_age", required = false) int ageParent2,
+                                    @RequestParam(value = "parent2_position", required = false) String commentParent2,
+                                    @RequestParam(value = "parent2_note", required = false) String positionParent2,
                                     Map<String, Object> model)
 
     {
@@ -72,6 +72,6 @@ public class ContactController {
 
 //        List<ContactDto> contacts = contactService.updateContact(login,name,);
 //        model.put("contacts", contacts);
-        return "";
+        return "students_list";
     }
 }
