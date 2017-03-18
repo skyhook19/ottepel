@@ -1,12 +1,11 @@
 package net;
 
-
-import net.dao.DaoContact;
 import net.dao.DaoUserImpl;
+import net.dao.contacts.DaoContact;
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
+import net.domain.Gender;
 import net.domain.contacts.Contact;
-import net.domain.contacts.Gender;
 import net.domain.contacts.Parent;
 import net.domain.users.Role;
 import net.domain.users.User;
@@ -80,14 +79,14 @@ public class TmpConfig {
 
     private void initUsers() {
         daoRole.save(roles.values());
-        User user = User.builder().name("user")
+        User user = User.builder()
                 .email("user@mail.com")
                 .login("user")
                 .password(new BCryptPasswordEncoder().encode("user"))
                 .enabled(true)
                 .roles(Arrays.asList(roles.get("USER"), roles.get("ADMIN"))).build();
         daoUser.save(user);
-        User contact = User.builder().name("2user")
+        User contact = User.builder()
                 .email("u3ser@mail.com")
                 .login("use3r")
                 .password(new BCryptPasswordEncoder().encode("use3r"))
