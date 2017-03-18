@@ -44,6 +44,11 @@ public class EmployeeService {
         return daoEmployee.findOneByLogin(authentication.getName());
     }
 
+    public EmployeeDto getCurrentEmployeeDto() {
+        Employee currentEmployee = getCurrentEmployee();
+        return converterEmployee.convertToEmployeeDto(currentEmployee, userService.getCurrentUser());
+    }
+
     public void addEmployee(String login, String name) {
         Account account = getCurrentEmployee().getAccount();
 
@@ -53,5 +58,21 @@ public class EmployeeService {
                 .account(account)
                 .build();
         daoEmployee.save(employee);
+    }
+
+    public EmployeeDto getEmployee(String login) {
+        Employee employee = daoEmployee.findOneByLogin(login);
+        return converterEmployee.convertToEmployeeDto(employee, userService.getUserByLogin(login));
+    }
+
+    public boolean updateEmployee(String login, String pass, String passwordOld, List<String> roles, String email, String name) {
+        boolean updated = userService.updateUser(login, email, passwordOld, pass, roles);
+        if (updated) {
+            Employee employee = daoEmployee.findOneByLogin(login);
+            employee.setName(name);
+            daoEmployee.save(employee);
+            return true;
+        }
+        return false;
     }
 }

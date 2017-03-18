@@ -182,25 +182,5 @@ public class MainController {
         return "reg_company";
     }
 
-    //// TODO: 18.03.17 переместить в контроллер для employee
-    @RequestMapping(value = {"/employee/{login}"}, method = RequestMethod.GET)
-    public String employee(@PathVariable("login") String login, Map<String, Object> mdel) {
-        ///// TODO: 18.03.17 получить пользователя по логину, положить его в модель
-        return "employee";
-    }
-
-    @RequestMapping(value = {"/employee/{id}"}, method = RequestMethod.POST)
-    public String employee(@PathVariable("id") int id,
-                           @RequestParam("name") String name,
-                           @RequestParam("login") String login,
-                           @RequestParam("email") String email,
-                           @RequestParam("pass") String pass,
-                           @RequestParam("pass_old") String passOld,
-                           @RequestParam("roles") List<String> roles,
-                           Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить
-        return "reg_company";
-    }
 
 }
