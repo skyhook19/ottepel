@@ -1,8 +1,8 @@
 package net.service;
 
-import net.dao.DaoContact;
+import net.dao.contacts.DaoContact;
+import net.domain.Gender;
 import net.domain.contacts.Contact;
-import net.domain.contacts.Gender;
 import net.domain.contacts.Parent;
 import net.dto.ContactDto;
 import net.service.converters.ConverterContact;
