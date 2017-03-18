@@ -1,5 +1,6 @@
 package net.dao;
 
+import net.domain.account.Account;
 import net.domain.users.User;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -21,14 +22,16 @@ public class DaoUserImpl {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<User> getAllEmployees() {
+    public List<User> getAllEmployees(Account account) {
         List list = sessionFactory.getCurrentSession().createCriteria(User.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .add(Restrictions.eq("account", account))
                 .createCriteria("roles").add(Restrictions.not(Restrictions.eq("authority", "ROLE_CONTACT"))).list();
         return list;
     }
 
-    public List<User> getAllContacts() {
+    public List<User> getAllContacts(Account account) {
         List list = sessionFactory.getCurrentSession().createCriteria(User.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .add(Restrictions.eq("account", account))
                 .createCriteria("roles").add(Restrictions.eq("authority", "ROLE_CONTACT")).list();
         return list;
     }

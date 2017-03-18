@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.domain.account.Account;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,6 +23,8 @@ public class User {
     private String name;
     private String email;
     private String password;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Account account;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
     private boolean enabled;

@@ -1,5 +1,6 @@
 package net.service;
 
+import net.dao.DaoUserImpl;
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
 import net.domain.users.Role;
@@ -25,16 +26,18 @@ import java.util.List;
 public class UserService {
     private static Role contactRole;
     private final DaoUser daoUser;
+    private final DaoUserImpl daoUserImpl;
     private final ConverterUsers converterUsers;
     private final DaoRole daoRole;
     @Value("${pass.size}")
     private int passwordSize;
 
     @Autowired
-    public UserService(DaoUser daoUser, ConverterUsers converterUsers, DaoRole daoRole) {
+    public UserService(DaoUser daoUser, ConverterUsers converterUsers, DaoRole daoRole,DaoUserImpl daoUserImpl) {
         this.daoUser = daoUser;
         this.converterUsers = converterUsers;
         this.daoRole = daoRole;
+        this.daoUserImpl = daoUserImpl;
     }
 
     @PostConstruct
@@ -45,6 +48,14 @@ public class UserService {
 
     public List<UserDto> getAllUsers() {
         return converterUsers.convertToUserDto(daoUser.findAll());
+    }
+
+    public List<User> getAllEmployees(){
+        return daoUserImpl.getAllEmployees(getCurrentUser().getAccount());
+    }
+
+    public List<User> getAllContacts(){
+        return daoUserImpl.getAllContacts(getCurrentUser().getAccount());
     }
 
     public List<Role> getAllRoles() {
