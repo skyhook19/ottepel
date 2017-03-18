@@ -38,27 +38,38 @@ public class ContactController {
         return "";
     }
 
-    @RequestMapping(value = {"/contacts/{login}"}, method = RequestMethod.POST)
-    public String updateContactInfo(@PathVariable(value = "login", required = false) String login,
-                                    @RequestParam("name") String name,
-                                    @RequestParam("lastName") String lastName,
-                                    @RequestParam("phoneNumber") String phoneNumber,
-                                    @RequestParam("gender") String gender,
-                                    @RequestParam("age") int age,
-                                    @RequestParam("dob") String dob,//дата рождения
-                                    @RequestParam("sourceOfCapital") String sourceOfCapital,
-                                    @RequestParam("interests") String interests,
-                                    @RequestParam("comment") String comment,
+    @RequestMapping(value = {"/contacts/"}, method = RequestMethod.POST)
+    public String updateContactInfo(@RequestParam(value = "name", required = true) String name,
+                                    @RequestParam(value = "lastName", required = true) String lastName,
+                                    @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
+                                    @RequestParam(value = "gender", required = false) String gender,
+                                    @RequestParam(value = "age", required = false) int age,
+                                    @RequestParam(value = "dob", required = false) String dob,//дата рождения
+                                    @RequestParam(value = "sourceOfCapital", required = false) String sourceOfCapital,
+                                    @RequestParam(value = "interests", required = false) String interests,
+                                    @RequestParam(value = "comment", required = false) String comment,
                                     //parent
-                                    @RequestParam("nameParent") String nameParent,
-                                    @RequestParam("phoneNumberParent") String phoneNumberParent,
-                                    @RequestParam("genderParent") String genderParent,
-                                    @RequestParam("ageParent") int ageParent,
-                                    @RequestParam("commentParent") String commentParent,
-                                    @RequestParam("positionParent") String positionParent,
+                                    @RequestParam(value = "nameParent", required = false) String nameParent,
+                                    @RequestParam(value = "phoneNumberParent", required = false) String phoneNumberParent,
+                                    @RequestParam(value = "genderParent", required = false) String genderParent,
+                                    @RequestParam(value = "ageParent", required = false) int ageParent,
+                                    @RequestParam(value = "commentParent", required = false) String commentParent,
+                                    @RequestParam(value = "positionParent", required = false) String positionParent,
+                                    //paret2
+                                    @RequestParam(value = "nameParent", required = false) String nameParent2,
+                                    @RequestParam(value = "phoneNumberParent", required = false) String phoneNumberParent2,
+                                    @RequestParam(value = "genderParent", required = false) String genderParent2,
+                                    @RequestParam(value = "ageParent", required = false) int ageParent2,
+                                    @RequestParam(value = "commentParent", required = false) String commentParent2,
+                                    @RequestParam(value = "positionParent", required = false) String positionParent2,
                                     Map<String, Object> model)
 
     {
+        contactService.addContact(name, lastName, phoneNumber, gender, age, dob, sourceOfCapital, interests, comment,
+                nameParent, phoneNumberParent, genderParent, ageParent, commentParent, positionParent,
+                nameParent2, phoneNumberParent2, genderParent2, ageParent2, commentParent2, positionParent2);
+
+
 //        List<ContactDto> contacts = contactService.updateContact(login,name,);
 //        model.put("contacts", contacts);
         return "";

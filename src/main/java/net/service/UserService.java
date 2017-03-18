@@ -63,14 +63,15 @@ public class UserService {
         return true;
     }
 
-    public boolean addContact(String name, String lastName) {
+    public String addContact(String name, String lastName) {
         User contact = new User();
-        contact.setLogin(generateLogin(name, lastName));
+        String login = generateLogin(name, lastName);
+        contact.setLogin(login);
         contact.setName(name);
         contact.setPassword(generatePassword());
         contact.setRoles(Arrays.asList(contactRole));
         contact.setEnabled(false);
-        return true;
+        return login;
     }
 
     private List<Role> getRoleByRoleName(List<String> roles) {
