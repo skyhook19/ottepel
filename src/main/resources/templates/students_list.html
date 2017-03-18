@@ -9,19 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Список групп</title>
+    <title>Список учеников</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../ottepel/src/main/resources/static/template/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- metisMenu -->
-    <link href="css/metisMenu.min.css" rel="stylesheet">
+    <link href="../../../../ottepel/src/main/resources/static/template/css/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../../../ottepel/src/main/resources/static/template/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../../ottepel/src/main/resources/static/template/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -238,10 +239,11 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Список групп</h1>
+                    <h1 class="page-header">Список учеников</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -250,57 +252,143 @@
                 <div class="col-xs-12">
                     <table class="table table-bordered table-hover">
                         <tr>
-                            <th>#</th>
-                            <th>Название</th>
-                            <th>Количество учеников</th>
-                            <th>Комментарий</th>
+                            <th>ID</th>
+                            <th>Имя</th>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Парни</td>
-                            <td>4</td>
-                            <td>Нормальная группа</td>
+                            <td>Максим Гурченков</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Девчата</td>
-                            <td>3</td>
-                            <td>Ниче так группа</td>
+                            <td>Дмитрий Дергунов</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Хоккеисты</td>
-                            <td>5</td>
-                            <td>Обычная группа</td>
+                            <td>Кайрат Сагалеев</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Сергей Косов</td>
                         </tr>
                     </table>
 
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить группа</button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить сотрудника</button>
                     <div class="collapse" id="add">
                         <form action="" method="POST" role="form">
                             <br>
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="" placeholder="Название" required="required">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required="required">
                             </div>
 
                             <div class="form-group">
-                                <select multiple name="peoples" id="peoples" class="form-control" required="required">
-                                    <option disabled="disabled">Список учеников</option>
-                                    <option value="user1">Дергунов Дмитрий</option>
-                                    <option value="user2">Максим Гурченков</option>
-                                    <option value="user3">Кайрат Сагалеев</option>
-                                    <option value="user4">Сергей Косов</option>
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
+                            </div>
+
+                            <div class="form-group">
+                                <select name="sex" id="sex" class="form-control">
+                                    <option>Пол</option>
+                                    <option value="male">Мужской</option>
+                                    <option value="female">Женский</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <textarea name="recommendation" id="recommendation" rows="4" class="form-control" placeholder="Рекомендации"></textarea>
+                                <input type="text" name="bdate" class="form-control" id="bdate" placeholder="Дата рождения">
                             </div>
+
+                            <div class="form-group">
+                                <input type="text" name="contact" class="form-control" id="contact" placeholder="Источник контакта">
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="interests" id="interests" rows="4" class="form-control" placeholder="Интересы"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="note" id="note" rows="4" class="form-control" placeholder="Заметка"></textarea>
+                            </div>
+
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#parent1" aria-expanded="false" aria-controls="parent1">Опекун 1</button>
+                            <div class="collapse" id="parent1">
+                                <form action="" method="POST" role="form">
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="text" name="parent1_name" class="form-control" id="parent1_name" placeholder="Имя" required="required">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent1_phone" class="form-control" id="parent1_phone" placeholder="Телефон">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select name="parent1_sex" id="parent1_sex" class="form-control">
+                                            <option>Пол</option>
+                                            <option value="male">Мужской</option>
+                                            <option value="female">Женский</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent1_age" class="form-control" id="parent1_age" placeholder="Возраст">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent1_position" class="form-control" id="parent1_position" placeholder="Должность">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <textarea name="parent1_note" id="parent1_note" rows="4" class="form-control" placeholder="Заметка"></textarea>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <br>
+
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#parent2" aria-expanded="false" aria-controls="parent2">Опекун 2</button>
+                            <div class="collapse" id="parent2">
+                                <form action="" method="POST" role="form">
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="text" name="parent2_name" class="form-control" id="parent2_name" placeholder="Имя" required="required">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent2_phone" class="form-control" id="parent2_phone" placeholder="Телефон">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select name="parent2_sex" id="parent2_sex" class="form-control">
+                                            <option>Пол</option>
+                                            <option value="male">Мужской</option>
+                                            <option value="female">Женский</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent2_age" class="form-control" id="parent2_age" placeholder="Возраст">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="parent2_position" class="form-control" id="parent2_position" placeholder="Должность">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <textarea name="parent2_note" id="parent2_note" rows="4" class="form-control" placeholder="Заметка"></textarea>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <br><br>
 
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
                     </div>
                 </div>
+            </div>
+            <br><br>
             </div>
             <!-- /.row -->
 
@@ -311,16 +399,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery-3.2.0.min.js"></script>
+<script src="../../../../ottepel/src/main/resources/static/template/js/jquery-3.2.0.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+<script src="../../../../ottepel/src/main/resources/static/template/js/bootstrap.min.js"></script>
 
     <!-- metisMenu JavaScript -->
-    <script src="js/metisMenu.min.js"></script>
+<script src="../../../../ottepel/src/main/resources/static/template/js/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/sb-admin-2.min.js"></script>
+<script src="../../../../ottepel/src/main/resources/static/template/js/sb-admin-2.min.js"></script>
 
 </body>
 

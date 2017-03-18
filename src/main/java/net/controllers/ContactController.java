@@ -23,20 +23,6 @@ public class ContactController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = {"/addContact"}, method = RequestMethod.POST)
-    public String addUser(@RequestParam("name") String name,
-                          @RequestParam("lastName") String lastName,
-                          Map<String, Object> model) {
-        boolean saved = userService.addContact(name, lastName);
-        if (!saved) {
-            model.put("error", "Пользователь с таким логином уже существует.");
-        } else {
-            model.put("completed", "Успешно");
-        }
-        return "";
-    }
-
-
     @RequestMapping(value = {"/contact/{login}"}, method = RequestMethod.GET)
     public String getContactByLogin(@PathVariable(value = "login", required = false) String login,
                                     Map<String, Object> model) {

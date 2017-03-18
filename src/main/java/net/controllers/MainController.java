@@ -2,7 +2,6 @@ package net.controllers;
 
 import net.domain.users.Role;
 import net.dto.UserDto;
-import net.service.ContactService;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +16,11 @@ import java.util.Map;
 @Controller
 public class MainController {
     private final UserService userService;
-    private final ContactService contactService;
+
 
     @Autowired
-    public MainController(UserService userService, ContactService contactService) {
+    public MainController(UserService userService) {
         this.userService = userService;
-        this.contactService = contactService;
     }
 
     @RequestMapping("/login")
@@ -30,25 +28,17 @@ public class MainController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
     public String addContact(@RequestParam("name") String name,
                              @RequestParam("lastName") String lastname,
                              Map<String, Object> model) {
-        boolean added = userService.addContact(name, lastname);
+        boolean saved = userService.addContact(name, lastname);
+        if (!saved) {
+            model.put("error", "Пользователь с таким логином уже существует.");
+        } else {
+            model.put("completed", "Успешно");
+        }
         return "";
-    }
-
-
-    @RequestMapping(value = {"/adminka", "/adminka/{column}/{sort}"}, method = RequestMethod.GET)
-    public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
-                                @PathVariable(value = "sort", required = false) String sort,
-                                Map<String, Object> model) {
-        List<UserDto> users = userService.getAllUsers(column, sort);
-        List<Role> roles = userService.getAllRoles();
-        model.put("roles", roles);
-        model.put("users", users);
-        model.put("sort", "asc".equals(sort) ? "desc" : "asc");
-        return "adminka";
     }
 
     @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
@@ -64,12 +54,23 @@ public class MainController {
         } else {
             model.put("completed", "Успешно");
         }
-        List<UserDto> users = userService.getAllUsers(null, null);
-        model.put("users", users);
-        model.put("sort", "asc");
+//        List<UserDto> users = userService.getAllUsers(null, null);
+//        model.put("users", users);
+//        model.put("sort", "asc");
         return "adminka";
     }
 
+    @RequestMapping(value = {"/adminka", "/adminka/{column}/{sort}"}, method = RequestMethod.GET)
+    public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
+                                @PathVariable(value = "sort", required = false) String sort,
+                                Map<String, Object> model) {
+        List<UserDto> users = userService.getAllUsers(column, sort);
+        List<Role> roles = userService.getAllRoles();
+        model.put("roles", roles);
+        model.put("users", users);
+        model.put("sort", "asc".equals(sort) ? "desc" : "asc");
+        return "adminka";
+    }
 
 
 }
