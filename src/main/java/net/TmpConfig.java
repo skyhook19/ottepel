@@ -10,6 +10,7 @@ import net.domain.contacts.Gender;
 import net.domain.contacts.Parent;
 import net.domain.users.Role;
 import net.domain.users.User;
+import net.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -32,22 +33,21 @@ public class TmpConfig {
     private final DaoRole daoRole;
     private final DaoContact daoContact;
     private final DaoUserImpl daoUserImpl;
+    private final ContactService contactService;
 
     @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl, ContactService contactService) {
         this.daoUser = daoUser;
         this.daoRole = daoRole;
         this.daoContact = daoContact;
         this.daoUserImpl = daoUserImpl;
+        this.contactService = contactService;
     }
 
     @PostConstruct
     public void init() {
         initUsers();
         newContact();
-
-        List<User> role_contact = daoUserImpl.getAllEmployees();
-        System.out.println(role_contact);
     }
 
     private void newContact() {

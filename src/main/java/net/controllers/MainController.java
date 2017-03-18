@@ -53,10 +53,6 @@ public class MainController {
         return "settings_account";
     }
 
-    @RequestMapping("/students_list")
-    public String student_list(Map<String, Object> model) {
-        return "students_list";
-    }
 
     @RequestMapping("/login")
     public String login(Map<String, Object> model) {

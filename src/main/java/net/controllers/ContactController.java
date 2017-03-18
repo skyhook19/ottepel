@@ -2,7 +2,6 @@ package net.controllers;
 
 import net.dto.ContactDto;
 import net.service.ContactService;
-import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +16,10 @@ import java.util.Map;
 public class ContactController {
 
     private final ContactService contactService;
-    private final UserService userService;
 
     @Autowired
-    public ContactController(ContactService contactService, UserService userService) {
+    public ContactController(ContactService contactService) {
         this.contactService = contactService;
-        this.userService = userService;
     }
 
     @RequestMapping(value = {"/contact/{login}"}, method = RequestMethod.GET)
@@ -33,11 +30,12 @@ public class ContactController {
         return "";
     }
 
-    @RequestMapping(value = {"/contacts"}, method = RequestMethod.GET)
-    public String getAllContacts(Map<String, Object> model) {
-        List<ContactDto> contacts = contactService.getAllContacts();
-        model.put("contacts", contacts);
-        return "";
+    @RequestMapping("/students_list")
+    public String student_list(Map<String, Object> model) {
+        List<ContactDto> allContacts = contactService.getAllContacts();
+
+        model.put("contacts", allContacts);
+        return "students_list";
     }
 
     @RequestMapping(value = {"/addContact"}, method = {RequestMethod.POST, RequestMethod.GET})
@@ -71,9 +69,9 @@ public class ContactController {
                 nameParent, phoneNumberParent, genderParent, 0, commentParent, positionParent,
                 nameParent2, phoneNumberParent2, genderParent2, 0, commentParent2, positionParent2);
 
+        List<ContactDto> allContacts = contactService.getAllContacts();
 
-//        List<ContactDto> contacts = contactService.updateContact(login,name,);
-//        model.put("contacts", contacts);
+        model.put("contacts", allContacts);
         return "students_list";
     }
 }
