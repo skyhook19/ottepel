@@ -158,7 +158,7 @@ public class MainController {
         switch (role.getAuthority()){
             case "ROLE_CONTACT":
                 return "dashboard_student";
-            case "TEACHER":
+            case "ROLE_TEACHER":
                 return "dashboard_employee";
             case "ROLE_RUK":
                 return "dashboard_ruk";
