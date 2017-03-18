@@ -3,7 +3,6 @@ package net.service;
 import net.dao.employee.DaoEmployee;
 import net.domain.employee.Employee;
 import net.domain.infrastructure.Account;
-import net.domain.users.User;
 import net.dto.EmployeeDto;
 import net.service.converters.ConverterEmployee;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package net.service.EmployeMenager;
+package net.service.EmployeeManager;
 
 public enum EmployeeType {
     RUK, TEACHER

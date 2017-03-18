@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -46,7 +46,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <form action="" method="POST" role="form">
+                                <form th:action="@{/reg_ruk}" method="POST" role="form">
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required="required">
                                     </div>
