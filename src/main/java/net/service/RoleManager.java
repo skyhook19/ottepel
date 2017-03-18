@@ -21,8 +21,8 @@ public class RoleManager {
 
     @PostConstruct
     public void init() {
-        roles.put("ADMIN", daoRole.findByAuthority("ROLE_ADMIN"));
-        roles.put("USER", daoRole.findByAuthority("ROLE_USER"));
+//        roles.put("ADMIN", daoRole.findByAuthority("ROLE_ADMIN"));
+//        roles.put("USER", daoRole.findByAuthority("ROLE_USER"));
         roles.put("CONTACT", daoRole.findByAuthority("ROLE_CONTACT"));
         roles.put("TEACHER", daoRole.findByAuthority("ROLE_TEACHER"));
         roles.put("RUK", daoRole.findByAuthority("ROLE_RUK"));

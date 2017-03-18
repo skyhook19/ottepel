@@ -38,8 +38,8 @@ public class Application {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable().authorizeRequests()
-                    .antMatchers("/adminka", "/addUser", "/user/*", "/delete/*", "/edit/*", "/update/*").hasRole("ADMIN")
-                    .antMatchers("/user", "/addNews", "/user", "/edit/*", "/update/*").hasRole("USER")
+                    .antMatchers("/adminka", "/addUser", "/user/*", "/delete/*", "/edit/*", "/update/*").hasRole("RUK")
+                    .antMatchers("/user", "/addNews", "/user", "/edit/*", "/update/*").hasRole("TEACHER")
                     .antMatchers("/**", "/").permitAll().anyRequest()
                     .fullyAuthenticated().and().formLogin().loginPage("/login")
                     .failureUrl("/login?error").permitAll()
