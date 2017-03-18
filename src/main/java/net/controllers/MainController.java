@@ -152,59 +152,5 @@ public class MainController {
         return "programm";
     }
 
-    //// TODO: 18.03.17 переместить в контроллер для компаний
-    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.GET)
-    public String company(Map<String, Object> mdel) {
-        return "reg_company";
-    }
-
-    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.POST)
-    public String company(@RequestParam("files") List<MultipartFile> files,
-                          @RequestParam("name") String name,
-                          @RequestParam("description") String description,
-                          Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить после спешного создания компании (для редиректа перед названием view написать "redirect:")
-        return "reg_company";
-    }
-
-    //// TODO: 18.03.17 переместить в контроллер для компаний
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.GET)
-    public String editCompany(@PathVariable("id") int id, Map<String, Object> mdel) {
-        ////// TODO: 18.03.17 получить программу из сервисного слоя и положить ее в модель
-        return "edit_company";
-    }
-
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.POST)
-    public String editCompany(@PathVariable("id") int id,
-                              @RequestParam("files") List<MultipartFile> files,
-                              @RequestParam("name") String name,
-                              @RequestParam("description") String description,
-                              Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить после спешного создания компании (для редиректа перед названием view написать "redirect:")
-        return "reg_company";
-    }
-
-    //// TODO: 18.03.17 переместить в контроллер для employee
-    @RequestMapping(value = {"/employee/{login}"}, method = RequestMethod.GET)
-    public String employee(@PathVariable("login") String login, Map<String, Object> mdel) {
-        ///// TODO: 18.03.17 получить пользователя по логину, положить его в модель
-        return "employee";
-    }
-
-    @RequestMapping(value = {"/employee/{id}"}, method = RequestMethod.POST)
-    public String employee(@PathVariable("id") int id,
-                           @RequestParam("name") String name,
-                           @RequestParam("login") String login,
-                           @RequestParam("email") String email,
-                           @RequestParam("pass") String pass,
-                           @RequestParam("pass_old") String passOld,
-                           @RequestParam("roles") List<String> roles,
-                           Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить
-        return "reg_company";
-    }
 
 }

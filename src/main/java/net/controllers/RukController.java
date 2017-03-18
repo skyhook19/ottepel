@@ -1,6 +1,5 @@
 package net.controllers;
 
-import net.dto.UserDto;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
