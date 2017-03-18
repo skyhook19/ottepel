@@ -1,7 +1,7 @@
 package net.service.auth;
 
-import net.dao.DaoUser;
-import net.domain.User;
+import net.dao.users.DaoUser;
+import net.domain.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

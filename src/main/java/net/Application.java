@@ -37,7 +37,7 @@ public class Application {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
+            http.csrf().disable().authorizeRequests()
                     .antMatchers("/adminka", "/addUser", "/user/*", "/delete/*", "/edit/*", "/update/*").hasRole("ADMIN")
                     .antMatchers("/user", "/addNews", "/user", "/edit/*", "/update/*").hasRole("USER")
                     .antMatchers("/**", "/").permitAll().anyRequest()

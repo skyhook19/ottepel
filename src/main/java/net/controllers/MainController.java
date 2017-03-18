@@ -1,6 +1,6 @@
 package net.controllers;
 
-import net.domain.Role;
+import net.domain.users.Role;
 import net.dto.UserDto;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+
     private final UserService userService;
 
     @Autowired
@@ -22,16 +23,83 @@ public class MainController {
         this.userService = userService;
     }
 
+    @RequestMapping("/auth_all")
+    public String auth_all(Map<String, Object> model) {
+        return "auth_all";
+    }
+
+    @RequestMapping("/auth_ruk")
+    public String auth_ruk(Map<String, Object> model) {
+        return "auth_ruk";
+    }
+
+    @RequestMapping("/employees_list")
+    public String employees_list(Map<String, Object> model) {
+        return "employees_list";
+    }
+
+    @RequestMapping("/groups_list")
+    public String group_list(Map<String, Object> model) {
+        return "groups_list";
+    }
+
+    @RequestMapping("/programms_list")
+    public String programms_list(Map<String, Object> model) {
+        return "programms_list";
+    }
+
+    @RequestMapping("/settings_account")
+    public String settings_account(Map<String, Object> model) {
+        return "settings_account";
+    }
+
+    @RequestMapping("/students_list")
+    public String student_list(Map<String, Object> model) {
+        return "students_list";
+    }
+
     @RequestMapping("/login")
     public String login(Map<String, Object> model) {
         return "login";
+    }
+
+    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
+    public String addContact(@RequestParam("name") String name,
+                             @RequestParam("lastName") String lastname,
+                             Map<String, Object> model) {
+        boolean saved = userService.addContact(name, lastname);
+        if (!saved) {
+            model.put("error", "Пользователь с таким логином уже существует.");
+        } else {
+            model.put("completed", "Успешно");
+        }
+        return "";
+    }
+
+    @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
+    public String addCollaborator(@RequestParam("name") String name,
+                                  @RequestParam("login") String login,
+                                  @RequestParam("email") String email,
+                                  @RequestParam("password") String pass,
+                                  @RequestParam(value = "roles", required = false) List<String> rolesName,
+                                  Map<String, Object> model) {
+        boolean saved = userService.addCollaborator(login, name, pass, rolesName, email);
+        if (!saved) {
+            model.put("error", "Пользователь с таким логином уже существует.");
+        } else {
+            model.put("completed", "Успешно");
+        }
+//        List<UserDto> users = userService.getAllUsers(null, null);
+//        model.put("users", users);
+//        model.put("sort", "asc");
+        return "adminka";
     }
 
     @RequestMapping(value = {"/adminka", "/adminka/{column}/{sort}"}, method = RequestMethod.GET)
     public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
                                 @PathVariable(value = "sort", required = false) String sort,
                                 Map<String, Object> model) {
-        List<UserDto> users = userService.gitAllUsers(column, sort);
+        List<UserDto> users = userService.getAllUsers(column, sort);
         List<Role> roles = userService.getAllRoles();
         model.put("roles", roles);
         model.put("users", users);
@@ -39,22 +107,5 @@ public class MainController {
         return "adminka";
     }
 
-    @RequestMapping(value = {"/addUser"}, method = RequestMethod.POST)
-    public String addUser(@RequestParam("name") String name,
-                          @RequestParam("login") String login,
-                          @RequestParam("email") String email,
-                          @RequestParam("password") String pass,
-                          @RequestParam(value = "roles", required = false) List<String> rolesName,
-                          Map<String, Object> model) {
-        boolean saved = userService.addUser(login, name, pass, rolesName, email);
-        if (!saved) {
-            model.put("error", "Пользователь с таким логином уже существует.");
-        } else {
-            model.put("completed", "Успешно");
-        }
-        List<UserDto> users = userService.gitAllUsers(null, null);
-        model.put("users", users);
-        model.put("sort", "asc");
-        return "adminka";
-    }
+
 }

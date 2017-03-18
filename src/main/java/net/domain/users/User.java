@@ -1,4 +1,4 @@
-package net.domain;
+package net.domain.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +24,9 @@ public class User {
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+    private boolean enabled;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

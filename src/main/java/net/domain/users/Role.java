@@ -1,4 +1,4 @@
-package net.domain;
+package net.domain.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
