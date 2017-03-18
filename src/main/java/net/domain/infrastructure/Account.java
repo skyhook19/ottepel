@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     private String description;
     // private Object logo  логотип на перспективу
