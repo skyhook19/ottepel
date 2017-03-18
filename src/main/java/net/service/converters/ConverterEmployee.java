@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 
 @Component
 public class ConverterEmployee {
-    List<EmployeeDto> convertToEmployeeDto(List<Employee> employees) {
+    public List<EmployeeDto> convertToEmployeeDto(List<Employee> employees) {
         return employees.stream().map(this::convertToEmployeeDto).collect(Collectors.toList());
     }
 
 
-    EmployeeDto convertToEmployeeDto(Employee employee) {
+    public EmployeeDto convertToEmployeeDto(Employee employee) {
         return EmployeeDto.builder()
                 .name(employee.getName())
                 .dob(employee.getDob())
