@@ -29,6 +29,11 @@ public class MainController {
         return "auth_all";
     }
 
+    @RequestMapping("/")
+    public String root(Map<String, Object> model) {
+        return "redirect:https://lab4up.ru/";
+    }
+
     @RequestMapping("/auth_ruk")
     public String auth_ruk(Map<String, Object> model) {
         return "auth_ruk";
