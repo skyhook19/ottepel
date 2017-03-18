@@ -25,21 +25,6 @@ public class RukController {
         return "reg_ruk";
     }
 
-    @RequestMapping(value = {"/programm"}, method = RequestMethod.GET)
-    public String programm(Map<String, Object> mdel) {
-        return "programm";
-    }
-
-    @RequestMapping(value = {"/registrate_account"}, method = RequestMethod.GET)
-    public String registrate_account(Map<String, Object> mdel) {
-        return "registrate_account";
-    }
-
-    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.GET)
-    public String company(Map<String, Object> mdel) {
-        return "reg_company";
-    }
-
     @RequestMapping(value = {"/reg_ruk"}, method = RequestMethod.POST)
     public String addRuk(Map<String, Object> mdel,
                          @RequestParam(value = "name", required = true) String name,
