@@ -50,14 +50,6 @@ public class UserService {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
 
-    public List<User> getAllEmployees(){
-        return daoUserImpl.getAllEmployees(getCurrentUser().getAccount());
-    }
-
-    public List<User> getAllContacts(){
-        return daoUserImpl.getAllContacts(getCurrentUser().getAccount());
-    }
-
     public List<Role> getAllRoles() {
         return daoRole.findAll();
     }
@@ -69,7 +61,6 @@ public class UserService {
         User collaborator = new User();
         collaborator.setLogin(login);
         collaborator.setEmail(email);
-        collaborator.setName(name);
         collaborator.setEnabled(true);
         collaborator.setPassword(new BCryptPasswordEncoder().encode(pass));
         collaborator.setRoles(getRoleByRoleName(rolesName));
@@ -81,7 +72,6 @@ public class UserService {
         User contact = new User();
         String login = generateLogin(name, lastName);
         contact.setLogin(login);
-        contact.setName(name);
         contact.setPassword(generatePassword());
         contact.setRoles(Arrays.asList(contactRole));
         contact.setEnabled(false);
@@ -120,7 +110,6 @@ public class UserService {
     public boolean editRuc(String name, String login, String pass, String email, String oldPass) {
         User ruk = daoUser.findOneByLogin(login);
         if (ruk.getPassword().equals(new BCryptPasswordEncoder().encode(oldPass))) {
-            ruk.setName(name);
             ruk.setPassword(new BCryptPasswordEncoder().encode(pass));
             ruk.setEmail(email);
             daoUser.save(ruk);
