@@ -31,25 +31,15 @@ public class TmpConfig {
     private final DaoUser daoUser;
     private final DaoRole daoRole;
     private final DaoContact daoContact;
-
-
-    @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
-        this.daoUser = daoUser;
-        this.daoRole = daoRole;
-        this.daoContact = daoContact;
-        this.daoUserImpl = daoUserImpl;
-    }
-
-    @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
-        this.daoUser = daoUser;
-        this.daoRole = daoRole;
-        this.daoContact = daoContact;
-        this.daoUserImpl = daoUserImpl;
-    }
-
     private final DaoUserImpl daoUserImpl;
+
+    @Autowired
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
+        this.daoUser = daoUser;
+        this.daoRole = daoRole;
+        this.daoContact = daoContact;
+        this.daoUserImpl = daoUserImpl;
+    }
 
     @PostConstruct
     public void init() {
