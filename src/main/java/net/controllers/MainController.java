@@ -133,9 +133,17 @@ public class MainController {
     /**
      * временно лежат тут
      */
-    @RequestMapping(value = {"/programm{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/programm/{id}"}, method = RequestMethod.GET)
     public String programm(@PathVariable(name = "id") int id, Map<String, Object> model) {
         //// TODO: 18.03.17 положить в модель программу (достать из базы по id)
+        return "programm";
+    }
+
+    @RequestMapping(value = {"/programm_sort/{id}"}, method = RequestMethod.POST)
+    public String programm_sort(@PathVariable(name = "id") int id,
+                                ////// TODO: 18.03.17 тут нужно принять массив из id урока и его номера всписке
+                                Map<String, Object> model) {
+        //// TODO: 18.03.17 по id достать из базы программу, переупорядочить  ее в соответсвии с массивом. (в объекте предмета есть поле order его надо привести в соответсвие с массивом)
         return "programm";
     }
 
