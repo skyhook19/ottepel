@@ -20,11 +20,11 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(nullable = false, unique = true)
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Account account;
 
+    @Column(nullable = false, unique = true)
     private String login;
     private String name;
     private String lastName;

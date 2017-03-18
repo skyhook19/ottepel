@@ -15,7 +15,6 @@ import java.util.List;
 @Builder
 public class UserDto {
     private String login;
-    private String name;
     private String email;
     private List<Role> roles;
 }
