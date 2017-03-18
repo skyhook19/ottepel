@@ -38,7 +38,7 @@ public class ContactController {
         return "";
     }
 
-    @RequestMapping(value = {"/contacts/"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/addContact"}, method = RequestMethod.POST)
     public String updateContactInfo(@RequestParam(value = "name", required = true) String name,
                                     @RequestParam(value = "lastName", required = true) String lastName,
                                     @RequestParam(value = "phoneNumber", required = false) String phoneNumber,

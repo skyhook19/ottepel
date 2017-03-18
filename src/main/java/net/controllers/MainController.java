@@ -63,18 +63,6 @@ public class MainController {
         return "login";
     }
 
-    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
-    public String addContact(@RequestParam("name") String name,
-                             @RequestParam("lastName") String lastname,
-                             Map<String, Object> model) {
-        boolean saved = userService.addContact(name, lastname);
-        if (!saved) {
-            model.put("error", "Пользователь с таким логином уже существует.");
-        } else {
-            model.put("completed", "Успешно");
-        }
-        return "";
-    }
 
     @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
     public String addCollaborator(@RequestParam("name") String name,
