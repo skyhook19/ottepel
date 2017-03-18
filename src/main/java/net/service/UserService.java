@@ -8,7 +8,6 @@ import net.dao.users.DaoUser;
 import net.domain.users.Role;
 import net.domain.users.User;
 import net.dto.ContactDto;
-import net.dto.EmployeeDto;
 import net.dto.UserDto;
 import net.service.converters.ConverterContact;
 import net.service.converters.ConverterEmployee;
@@ -31,6 +30,7 @@ import java.util.List;
 @Service
 public class UserService {
     private static Role contactRole;
+    private static Role contactRuk;
     private final DaoUser daoUser;
     private final DaoUserImpl daoUserImpl;
     private final ConverterUsers converterUsers;
@@ -57,7 +57,7 @@ public class UserService {
     @PostConstruct
     public void init() {
         contactRole = daoRole.findByAuthority("ROLE_CONTACT");
-        contactRole = daoRole.findByAuthority("ROLE_RUK");
+        contactRuk = daoRole.findByAuthority("ROLE_RUK");
     }
 
     public List<UserDto> getAllUsers() {
