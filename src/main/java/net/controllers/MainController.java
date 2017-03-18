@@ -53,28 +53,12 @@ public class MainController {
         return "settings_account";
     }
 
-    @RequestMapping("/students_list")
-    public String student_list(Map<String, Object> model) {
-        return "students_list";
-    }
 
     @RequestMapping("/login")
     public String login(Map<String, Object> model) {
-        return "login";
+        return "auth_all";
     }
 
-    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
-    public String addContact(@RequestParam("name") String name,
-                             @RequestParam("lastName") String lastname,
-                             Map<String, Object> model) {
-        boolean saved = userService.addContact(name, lastname);
-        if (!saved) {
-            model.put("error", "Пользователь с таким логином уже существует.");
-        } else {
-            model.put("completed", "Успешно");
-        }
-        return "";
-    }
 
     @RequestMapping(value = {"/addCollaborator"}, method = RequestMethod.POST)
     public String addCollaborator(@RequestParam("name") String name,
@@ -99,13 +83,49 @@ public class MainController {
     public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
                                 @PathVariable(value = "sort", required = false) String sort,
                                 Map<String, Object> model) {
-        List<UserDto> users = userService.getAllUsers(column, sort);
+        List<UserDto> users = userService.getAllUsers();
         List<Role> roles = userService.getAllRoles();
         model.put("roles", roles);
         model.put("users", users);
         model.put("sort", "asc".equals(sort) ? "desc" : "asc");
-        return "adminka";
+        return "old/adminka";
     }
 
+   /* @RequestMapping(value = {"/tokensignin"}, method = RequestMethod.POST)
+    public String tokensignin(@RequestBody String id_token) {
 
+        System.out.println(id_token);
+        return id_token;
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+                .setAudience(Collections.singletonList("335218463881-7gd33rfh03tbhkn5uel8v1nh2ie1i1j5"))
+                // Or, if multiple clients access the backend:
+                //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+                .build();
+
+// (Receive idTokenString by HTTPS POST)
+
+        GoogleIdToken idToken = verifier.verify(idTokenString);
+        if (idToken != null) {
+            Payload payload = idToken.getPayload();
+
+            // Print user identifier
+            String userId = payload.getSubject();
+            System.out.println("User ID: " + userId);
+
+            // Get profile information from payload
+            String email = payload.getEmail();
+            boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+            String name = (String) payload.get("name");
+            String pictureUrl = (String) payload.get("picture");
+            String locale = (String) payload.get("locale");
+            String familyName = (String) payload.get("family_name");
+            String givenName = (String) payload.get("given_name");
+
+            // Use or store profile information
+            // ...
+
+        } else {
+            System.out.println("Invalid ID token.");
+        }
+    }*/
 }

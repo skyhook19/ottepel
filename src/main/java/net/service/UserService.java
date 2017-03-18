@@ -9,6 +9,8 @@ import net.service.converters.ConverterUsers;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +40,10 @@ public class UserService {
     @PostConstruct
     public void init() {
         contactRole = daoRole.findByAuthority("ROLE_CONTACT");
+        contactRole = daoRole.findByAuthority("ROLE_RUK");
     }
 
-    public List<UserDto> getAllUsers(String column, String sort) {
+    public List<UserDto> getAllUsers() {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
 
@@ -63,14 +66,15 @@ public class UserService {
         return true;
     }
 
-    public boolean addContact(String name, String lastName) {
+    public String addContact(String name, String lastName) {
         User contact = new User();
-        contact.setLogin(generateLogin(name, lastName));
+        String login = generateLogin(name, lastName);
+        contact.setLogin(login);
         contact.setName(name);
         contact.setPassword(generatePassword());
         contact.setRoles(Arrays.asList(contactRole));
         contact.setEnabled(false);
-        return true;
+        return login;
     }
 
     private List<Role> getRoleByRoleName(List<String> roles) {
@@ -98,4 +102,32 @@ public class UserService {
     }
 
 
+    public void addRuc(String name, String login, String pass, String email) {
+        addCollaborator(login, name, pass, Arrays.asList("ROLE_RUK"), email);
+    }
+
+    public boolean editRuc(String name, String login, String pass, String email, String oldPass) {
+        User ruk = daoUser.findOneByLogin(login);
+        if (ruk.getPassword().equals(new BCryptPasswordEncoder().encode(oldPass))) {
+            ruk.setName(name);
+            ruk.setPassword(new BCryptPasswordEncoder().encode(pass));
+            ruk.setEmail(email);
+            daoUser.save(ruk);
+            return true;
+        }
+        return false;
+    }
+
+    public UserDto getUser(String login) {
+        return converterUsers.userToCollaboratorDto(daoUser.findOneByLogin(login));
+    }
+
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return daoUser.findOneByLogin(authentication.getName());
+    }
+
+    public UserDto getCurrentUserDto() {
+        return converterUsers.userToCollaboratorDto(getCurrentUser());
+    }
 }

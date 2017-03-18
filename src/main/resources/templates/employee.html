@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Список учеников</title>
+    <title>Сотрудник: Петр Петров</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -243,174 +243,50 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Список учеников</h1>
+                <h1 class="page-header">Сотрудник: Петр Петров</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-xs-12">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add"
-                        aria-expanded="false" aria-controls="add">Добавить ученика
-                </button>
-                <div class="collapse" id="add">
-                    <form th:action="@{/addContact}" method="POST" role="form">
-                        <br>
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Имя"
-                                   required="required">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Фамилия"
-                                   required="required">
-                        </div>
+            <div class="col-xs-12 col-md-9 col-lg-6">
+                <form th:action="@{/addContact}" method="POST" role="form">
+                    <br>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td>Имя</td>
+                                <td><input type="text" name="name" class="form-control" id="name" placeholder="Имя" required="required"></td>
+                            </tr>
+                            <tr>
+                                <td>Логин</td>
+                                <td><input type="text" name="login" class="form-control" id="login" placeholder="Логин" required="required"></td>
+                            </tr>
+                            <tr>
+                                <td>Роль</td>
+                                <td><select name="role" id="role" class="form-control" required="required">
+                                    <option disabled="disabled" selected="selected">Роль</option>
+                                    <option value="adm">Администратор</option>
+                                    <option value="teach">Учитель</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td>Пароль</td>
+                                <td><input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required="required"></td>
+                            </tr>
+                            <tr>
+                                <td>Повторите пароль</td>
+                                <td><input type="password" name="re_password" class="form-control" id="re_password" placeholder="Повторите пароль" required="required"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td><input type="email" name="email" class="form-control" id="" placeholder="Email" required="required"></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                        <div class="form-group">
-                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
-                        </div>
-
-                        <div class="form-group">
-                            <select name="sex" id="sex" class="form-control">
-                                <option selected="selected" disabled="disbled">Пол</option>
-                                <option value="MALE">Мужской</option>
-                                <option value="FEMALE">Женский</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="bdate" class="form-control" id="bdate" placeholder="Дата рождения">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="contact" class="form-control" id="contact"
-                                   placeholder="Источник контакта">
-                        </div>
-
-                        <div class="form-group">
-                            <textarea name="interests" id="interests" rows="4" class="form-control"
-                                      placeholder="Интересы"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea name="note" id="note" rows="4" class="form-control"
-                                      placeholder="Заметка"></textarea>
-                        </div>
-
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#parent1"
-                                aria-expanded="false" aria-controls="parent1">Опекун 1
-                        </button>
-                        <div class="collapse" id="parent1">
-                            <br>
-                            <div class="form-group">
-                                <input type="text" name="parent1_name" class="form-control" id="parent1_name"
-                                       placeholder="Имя" required="required">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent1_phone" class="form-control" id="parent1_phone"
-                                       placeholder="Телефон">
-                            </div>
-
-                            <div class="form-group">
-                                <select name="parent1_sex" id="parent1_sex" class="form-control">
-                                    <option selected="selected" disabled="disbled">Пол</option>
-                                    <option value="MALE">Мужской</option>
-                                    <option value="FEMALE">Женский</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent1_age" class="form-control" id="parent1_age"
-                                       placeholder="Возраст">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent1_position" class="form-control"
-                                       id="parent1_position" placeholder="Должность">
-                            </div>
-
-                            <div class="form-group">
-                                    <textarea name="parent1_note" id="parent1_note" rows="4" class="form-control"
-                                              placeholder="Заметка"></textarea>
-                            </div>
-
-                        </div>
-
-                        <br>
-
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#parent2"
-                                aria-expanded="false" aria-controls="parent2">Опекун 2
-                        </button>
-                        <div class="collapse" id="parent2">
-                            <br>
-                            <div class="form-group">
-                                <input type="text" name="parent2_name" class="form-control" id="parent2_name"
-                                       placeholder="Имя" required="required">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent2_phone" class="form-control" id="parent2_phone"
-                                       placeholder="Телефон">
-                            </div>
-
-                            <div class="form-group">
-                                <select name="parent2_sex" id="parent2_sex" class="form-control">
-                                    <option selected="selected" disabled="disbled">Пол</option>
-                                    <option value="MALE">Мужской</option>
-                                    <option value="FEMALE">Женский</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent2_age" class="form-control" id="parent2_age"
-                                       placeholder="Возраст">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="parent2_position" class="form-control"
-                                       id="parent2_position" placeholder="Должность">
-                            </div>
-
-                            <div class="form-group">
-                                    <textarea name="parent2_note" id="parent2_note" rows="4" class="form-control"
-                                              placeholder="Заметка"></textarea>
-                            </div>
-                        </div>
-
-                        <br><br>
-
-                        <button type="submit" class="btn btn-success">Добавить</button>
-                    </form>
-                    <hr>
-                </div>
-
-                <br><br>
-
-                <table class="table table-bordered table-hover">
-                    <tr>
-                        <th>ID</th>
-                        <th>Имя</th>
-                    </tr>
-                    <tr th:each="contact, iterationStatus: ${contacts}">
-                        <td th:text="${iterationStatus.count}">1</td>
-                        <td><a th:text="${contact.name}" th:href="'/contact/'+${contact.login}">Максим Гурченков</a>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                         <td>2</td>
-                         <td><a href="#">Дмитрий Дергунов</a></td>
-                     </tr>
-                     <tr>
-                         <td>3</td>
-                         <td><a href="#">Кайрат Сагалеев</a></td>
-                     </tr>
-                     <tr>
-                         <td>4</td>
-                         <td><a href="#">Сергей Косов</a></td>
-                     </tr>-->
-                </table>
-
+                    <button type="submit" class="btn btn-success">Изменить</button>
+                </form>
             </div>
         </div>
         <br><br>

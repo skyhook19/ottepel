@@ -2,6 +2,7 @@ package net;
 
 
 import net.dao.DaoContact;
+import net.dao.DaoUserImpl;
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
 import net.domain.contacts.Contact;
@@ -9,6 +10,7 @@ import net.domain.contacts.Gender;
 import net.domain.contacts.Parent;
 import net.domain.users.Role;
 import net.domain.users.User;
+import net.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -24,21 +26,24 @@ public class TmpConfig {
         roles = new HashMap<>();
         roles.put("ADMIN", Role.builder().authority("ROLE_ADMIN").build());
         roles.put("USER", Role.builder().authority("ROLE_USER").build());
-        roles.put("USER", Role.builder().authority("ROLE_CONTACT").build());
+        roles.put("CONTACT", Role.builder().authority("ROLE_CONTACT").build());
+        roles.put("RUK", Role.builder().authority("ROLE_RUK").build());
     }
 
     private final DaoUser daoUser;
     private final DaoRole daoRole;
     private final DaoContact daoContact;
-
+    private final DaoUserImpl daoUserImpl;
+    private final ContactService contactService;
 
     @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact) {
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl, ContactService contactService) {
         this.daoUser = daoUser;
         this.daoRole = daoRole;
         this.daoContact = daoContact;
+        this.daoUserImpl = daoUserImpl;
+        this.contactService = contactService;
     }
-
 
     @PostConstruct
     public void init() {
@@ -81,6 +86,13 @@ public class TmpConfig {
                 .password(new BCryptPasswordEncoder().encode("user"))
                 .enabled(true)
                 .roles(Arrays.asList(roles.get("USER"), roles.get("ADMIN"))).build();
+        daoUser.save(user);
+        User contact = User.builder().name("2user")
+                .email("u3ser@mail.com")
+                .login("use3r")
+                .password(new BCryptPasswordEncoder().encode("use3r"))
+                .enabled(true)
+                .roles(Arrays.asList(roles.get("CONTACT"))).build();
         daoUser.save(user);
 
 

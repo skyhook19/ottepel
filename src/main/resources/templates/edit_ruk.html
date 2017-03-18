@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Список групп</title>
+    <title>Редактировать аккаунт</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -239,76 +239,55 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Список групп</h1>
+                    <h1 class="page-header">Редактировать аккаунт</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+
             <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить группу</button>
-                    <div class="collapse" id="add">
-                        <form action="" method="POST" role="form">
-                            <br>
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="" placeholder="Название" required="required">
-                            </div>
+                <div class="col-xs-12 col-md-9 col-lg-6">
+                    <form action="" method="POST" role="form">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Логин</td>
+                                    <td><input th:value="${ruk.login}" type="text" name="login" class="form-control"
+                                               id="login" placeholder="Логин" disabled required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td>Имя</td>
+                                    <td><input th:value="${ruk.name}" type="text" name="name" class="form-control"
+                                               id="name" placeholder="Имя" required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td>Текущий пароль</td>
+                                    <td><input type="password" name="old_password" class="form-control" id="old_password" placeholder="Текущий пароль" required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td>Новый пароль</td>
+                                    <td><input type="password" name="password" class="form-control" id="password" placeholder="Новый пароль" required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td>Подтвердите пароль</td>
+                                    <td><input type="password" name="re_password" class="form-control" id="re_password" placeholder="Подтвердите пароль" required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input th:value="${ruk.email}" type="email" name="email" class="form-control"
+                                               id="email" placeholder="Email" required="required"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                            <div class="form-group">
-                                <select multiple name="peoples" id="peoples" class="form-control" required="required">
-                                    <option disabled="disabled">Список учеников</option>
-                                    <option value="user1">Дергунов Дмитрий</option>
-                                    <option value="user2">Максим Гурченков</option>
-                                    <option value="user3">Кайрат Сагалеев</option>
-                                    <option value="user4">Сергей Косов</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea name="comment" id="comment" rows="4" class="form-control" placeholder="Комментарий"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-success">Добавить</button>
-                        </form>
-                        <hr>
-                    </div>
-
-                    <br><br>
-
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <th>#</th>
-                            <th>Название</th>
-                            <th>Количество учеников</th>
-                            <th>Комментарий</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="#">Парни</a></td>
-                            <td>4</td>
-                            <td>Нормальная группа</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><a href="#">Девчата</a></td>
-                            <td>3</td>
-                            <td>Ниче так группа</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><a href="#">Хоккеисты</a></td>
-                            <td>5</td>
-                            <td>Обычная группа</td>
-                        </tr>
-                    </table>
+                        <button type="submit" class="btn btn-success">Сохранить</button>
+                    </form>
                 </div>
             </div>
-            <!-- /.row -->
-
-            </div>
+        </div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -325,6 +304,24 @@
 
     <!-- Custom Theme JavaScript -->
 <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Custom JavaScript -->
+<script src="/js/script.js"></script>
+
+    <!-- Validate password -->
+<script>
+    var password = document.getElementById("password"),
+        re_password = document.getElementById("re_password");
+    function validatePassword() {
+        if (password.value != re_password.value) {
+            re_password.setCustomValidity("Пароли не совпадают");
+        } else {
+            re_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    re_password.onkeyup = validatePassword;
+</script>
 
 </body>
 

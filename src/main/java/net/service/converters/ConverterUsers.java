@@ -13,9 +13,12 @@ public class ConverterUsers {
         return users.stream().map(this::userToCollaboratorDto).collect(Collectors.toList());
     }
 
-    private UserDto userToCollaboratorDto(User user) {
+    public UserDto userToCollaboratorDto(User user) {
         return UserDto.builder()
                 .login(user.getLogin())
-                .roles(user.getRoles()).build();
+                .roles(user.getRoles())
+                .name(user.getName())
+                .email(user.getEmail())
+                .build();
     }
 }

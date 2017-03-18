@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -40,10 +40,11 @@
                         <h3 class="panel-title">Авторизация</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" th:action="@{/login}" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Логин" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Логин" name="username" type="text"
+                                           autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Пароль" name="password" type="password" value="">
@@ -54,7 +55,8 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Войти</a>
+                                <!--<a href="index.html" class="btn btn-lg btn-success btn-block">Войти</a>-->
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Войти</button>
                             </fieldset>
                         </form>
                     </div>
