@@ -57,7 +57,7 @@ public class ContactService {
         return Contact.builder()
                 .name(name)
                 .phoneNumber(phoneNumber)
-                .gender(Gender.valueOf(gender))
+                .gender(getGenderByGenderStr(gender))
                 .login(login)
                 .dob(getDobByString(dob))
                 .age(age)
@@ -72,10 +72,17 @@ public class ContactService {
         return Parent.builder()
                 .name(nameParent)
                 .phoneNumber(phoneNumberParent)
-                .gender(Gender.valueOf(genderParent))
+                .gender(getGenderByGenderStr(genderParent))
                 .age(ageParent)
                 .position(positionParent)
                 .comment(commentParent).build();
+    }
+
+    private Gender getGenderByGenderStr(String gender) {
+        if (gender == null || gender.isEmpty()) {
+            return null;
+        }
+        return Gender.valueOf(gender);
     }
 
     private Date getDobByString(String dob) {
