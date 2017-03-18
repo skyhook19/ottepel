@@ -1,4 +1,4 @@
-package net.domain.contacts;
+package net.domain;
 
 public enum Gender {
     MALE,

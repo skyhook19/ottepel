@@ -1,4 +1,4 @@
-package net.domain.contacts;
+package net.domain.employee;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,46 +9,32 @@ import net.domain.account.Account;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Contact {
+public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private long id;
-    @Column(nullable = false, unique = true)
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Account account;
 
+    @Column(unique = true)
     private String login;
     private String name;
     private String lastName;
     private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private int age;
     private Date dob;//дата рождения
-    private String sourceOfCapital;
-    @Column(columnDefinition = "text")
-    private String interests;
-    @Column(columnDefinition = "text")
-    private String comment;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Parent> parents;
-
-    public String getGender() {
-        return gender.toString();
-    }
-
     private boolean enabled;
 
     public boolean isEnabled() {
         return enabled;
     }
+
 }

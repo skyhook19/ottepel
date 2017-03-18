@@ -20,4 +20,5 @@ public class Account {
     private int id;
     private String name;
     private String description;
+    // private Object logo  логотип на перспективу
 }

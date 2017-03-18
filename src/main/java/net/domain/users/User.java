@@ -20,11 +20,8 @@ public class User {
     private long id;
     @Column(unique = true)
     private String login;
-    private String name;
-    private String email;
     private String password;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Account account;
+    private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
     private boolean enabled;
