@@ -91,5 +91,41 @@ public class MainController {
         return "adminka";
     }
 
+   /* @RequestMapping(value = {"/tokensignin"}, method = RequestMethod.POST)
+    public String tokensignin(@RequestBody String id_token) {
 
+        System.out.println(id_token);
+        return id_token;
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+                .setAudience(Collections.singletonList("335218463881-7gd33rfh03tbhkn5uel8v1nh2ie1i1j5"))
+                // Or, if multiple clients access the backend:
+                //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+                .build();
+
+// (Receive idTokenString by HTTPS POST)
+
+        GoogleIdToken idToken = verifier.verify(idTokenString);
+        if (idToken != null) {
+            Payload payload = idToken.getPayload();
+
+            // Print user identifier
+            String userId = payload.getSubject();
+            System.out.println("User ID: " + userId);
+
+            // Get profile information from payload
+            String email = payload.getEmail();
+            boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+            String name = (String) payload.get("name");
+            String pictureUrl = (String) payload.get("picture");
+            String locale = (String) payload.get("locale");
+            String familyName = (String) payload.get("family_name");
+            String givenName = (String) payload.get("given_name");
+
+            // Use or store profile information
+            // ...
+
+        } else {
+            System.out.println("Invalid ID token.");
+        }
+    }*/
 }
