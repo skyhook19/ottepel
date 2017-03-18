@@ -1,4 +1,4 @@
-package net.dao;
+package net.dao.contacts;
 
 import net.domain.contacts.Contact;
 import org.springframework.data.repository.CrudRepository;
