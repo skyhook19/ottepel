@@ -17,6 +17,7 @@ public class ConverterUsers {
         return UserDto.builder()
                 .login(user.getLogin())
                 .roles(user.getRoles())
+                .name(user.getName())
                 .email(user.getEmail())
                 .build();
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -255,11 +255,13 @@
                             <tbody>
                                 <tr>
                                     <td>Логин</td>
-                                    <td><b>some_login</b></td>
+                                    <td><input th:value="${ruk.login}" type="text" name="login" class="form-control"
+                                               id="login" placeholder="Логин" disabled required="required"></td>
                                 </tr>
                                 <tr>
                                     <td>Имя</td>
-                                    <td><input type="text" name="name" class="form-control" id="name" placeholder="Имя" required="required"></td>
+                                    <td><input th:value="${ruk.name}" type="text" name="name" class="form-control"
+                                               id="name" placeholder="Имя" required="required"></td>
                                 </tr>
                                 <tr>
                                     <td>Текущий пароль</td>
@@ -275,7 +277,8 @@
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td><input type="email" name="email" class="form-control" id="email" placeholder="Email" required="required"></td>
+                                    <td><input th:value="${ruk.email}" type="email" name="email" class="form-control"
+                                               id="email" placeholder="Email" required="required"></td>
                                 </tr>
                             </tbody>
                         </table>
