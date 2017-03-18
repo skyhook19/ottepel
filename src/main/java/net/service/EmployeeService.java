@@ -1,15 +1,10 @@
 package net.service;
 
-import net.dao.DaoUserImpl;
 import net.dao.employee.DaoEmployee;
-import net.dao.users.DaoRole;
-import net.dao.users.DaoUser;
 import net.domain.employee.Employee;
 import net.domain.infrastructure.Account;
-import net.domain.users.User;
 import net.dto.EmployeeDto;
 import net.service.converters.ConverterEmployee;
-import net.service.converters.ConverterUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

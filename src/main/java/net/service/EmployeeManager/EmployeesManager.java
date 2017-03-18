@@ -1,4 +1,4 @@
-package net.service.EmployeMenager;
+package net.service.EmployeeManager;
 
 import net.dao.users.DaoUser;
 import net.domain.users.Role;
