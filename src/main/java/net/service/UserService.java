@@ -40,7 +40,7 @@ public class UserService {
         contactRole = daoRole.findByAuthority("ROLE_CONTACT");
     }
 
-    public List<UserDto> getAllUsers(String column, String sort) {
+    public List<UserDto> getAllUsers() {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
 

@@ -2,6 +2,7 @@ package net;
 
 
 import net.dao.DaoContact;
+import net.dao.DaoUserImpl;
 import net.dao.users.DaoRole;
 import net.dao.users.DaoUser;
 import net.domain.contacts.Contact;
@@ -24,7 +25,7 @@ public class TmpConfig {
         roles = new HashMap<>();
         roles.put("ADMIN", Role.builder().authority("ROLE_ADMIN").build());
         roles.put("USER", Role.builder().authority("ROLE_USER").build());
-        roles.put("USER", Role.builder().authority("ROLE_CONTACT").build());
+        roles.put("CONTACT", Role.builder().authority("ROLE_CONTACT").build());
     }
 
     private final DaoUser daoUser;
@@ -33,17 +34,30 @@ public class TmpConfig {
 
 
     @Autowired
-    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact) {
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
         this.daoUser = daoUser;
         this.daoRole = daoRole;
         this.daoContact = daoContact;
+        this.daoUserImpl = daoUserImpl;
     }
 
+    @Autowired
+    public TmpConfig(DaoUser daoUser, DaoRole daoRole, DaoContact daoContact, DaoUserImpl daoUserImpl) {
+        this.daoUser = daoUser;
+        this.daoRole = daoRole;
+        this.daoContact = daoContact;
+        this.daoUserImpl = daoUserImpl;
+    }
+
+    private final DaoUserImpl daoUserImpl;
 
     @PostConstruct
     public void init() {
         initUsers();
         newContact();
+
+        List<User> role_contact = daoUserImpl.getAllEmployees();
+        System.out.println(role_contact);
     }
 
     private void newContact() {
@@ -81,6 +95,13 @@ public class TmpConfig {
                 .password(new BCryptPasswordEncoder().encode("user"))
                 .enabled(true)
                 .roles(Arrays.asList(roles.get("USER"), roles.get("ADMIN"))).build();
+        daoUser.save(user);
+        User contact = User.builder().name("2user")
+                .email("u3ser@mail.com")
+                .login("use3r")
+                .password(new BCryptPasswordEncoder().encode("use3r"))
+                .enabled(true)
+                .roles(Arrays.asList(roles.get("CONTACT"))).build();
         daoUser.save(user);
 
 

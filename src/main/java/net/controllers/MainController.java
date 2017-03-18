@@ -87,7 +87,7 @@ public class MainController {
     public String getNewsByDate(@PathVariable(value = "column", required = false) String column,
                                 @PathVariable(value = "sort", required = false) String sort,
                                 Map<String, Object> model) {
-        List<UserDto> users = userService.getAllUsers(column, sort);
+        List<UserDto> users = userService.getAllUsers();
         List<Role> roles = userService.getAllRoles();
         model.put("roles", roles);
         model.put("users", users);

@@ -14,4 +14,5 @@ public interface DaoUser extends CrudRepository<User, String> {
 
     @Override
     List<User> findAll();
+
 }
