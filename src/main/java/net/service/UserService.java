@@ -1,6 +1,5 @@
 package net.service;
 
-import net.dao.DaoUserImpl;
 import net.dao.contacts.DaoContact;
 import net.dao.employee.DaoEmployee;
 import net.dao.users.DaoRole;
@@ -20,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -29,40 +27,35 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private static Role contactRole;
-    private static Role contactRuk;
     private final DaoUser daoUser;
-    private final DaoUserImpl daoUserImpl;
     private final ConverterUsers converterUsers;
     private final ConverterContact converterContact;
     private final ConverterEmployee converterEmployee;
     private final DaoRole daoRole;
     private final DaoContact daoContact;
+    private final RoleManager roleManager;
     private final DaoEmployee daoEmployee;
+
     @Value("${pass.size}")
     private int passwordSize;
 
     @Autowired
-    public UserService(DaoUser daoUser, ConverterUsers converterUsers, ConverterContact converterContact, ConverterEmployee converterEmployee, DaoRole daoRole, DaoUserImpl daoUserImpl, DaoContact daoContact, DaoEmployee daoEmployee) {
+    public UserService(DaoUser daoUser, ConverterUsers converterUsers, ConverterContact converterContact, ConverterEmployee converterEmployee, DaoRole daoRole, DaoContact daoContact, RoleManager roleManager, DaoEmployee daoEmployee) {
         this.daoUser = daoUser;
         this.converterUsers = converterUsers;
         this.converterContact = converterContact;
         this.converterEmployee = converterEmployee;
         this.daoRole = daoRole;
-        this.daoUserImpl = daoUserImpl;
         this.daoContact = daoContact;
+        this.roleManager = roleManager;
         this.daoEmployee = daoEmployee;
     }
 
-    @PostConstruct
-    public void init() {
-        contactRole = daoRole.findByAuthority("ROLE_CONTACT");
-        contactRuk = daoRole.findByAuthority("ROLE_RUK");
-    }
 
     public List<UserDto> getAllUsers() {
         return converterUsers.convertToUserDto(daoUser.findAll());
     }
+
     private String getCurrentUserLogin() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
@@ -96,7 +89,7 @@ public class UserService {
         String login = generateLogin(name, lastName);
         user.setLogin(login);
         user.setPassword(generatePassword());
-        user.setRoles(Arrays.asList(contactRole));
+        user.setRoles(Arrays.asList(roleManager.getRoleByRoleName("CONTACT")));
         user.setEnabled(false);
         return login;
     }
