@@ -3,6 +3,7 @@ package net.service;
 import net.dao.employee.DaoEmployee;
 import net.domain.employee.Employee;
 import net.domain.infrastructure.Account;
+import net.domain.users.User;
 import net.dto.EmployeeDto;
 import net.service.converters.ConverterEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class EmployeeService {
     public List<EmployeeDto> getAllEmployees() {
         Employee currentEmployee = getCurrentEmployee();
         Account account = currentEmployee.getAccount();
-        List<Employee> employees = daoEmployee.findByAccount(account);
+        List<Employee> employees = daoEmployee.findByAccountOrderByLogin(account);
         List<User> users = userService.getAllUsersByLogin(getLoginByEmployees(employees));
         return converterEmployee.convertToEmployeeDto(employees, users);
     }
@@ -44,9 +45,12 @@ public class EmployeeService {
     }
 
     public void addEmployee(String login, String name) {
+        Account account = getCurrentEmployee().getAccount();
+
         Employee employee = Employee.builder()
                 .login(login)
                 .name(name)
+                .account(account)
                 .build();
         daoEmployee.save(employee);
     }
