@@ -15,12 +15,47 @@ import java.util.Map;
 
 @Controller
 public class MainController {
-    private final UserService userService;
 
+    private final UserService userService;
 
     @Autowired
     public MainController(UserService userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping("/auth_all")
+    public String auth_all(Map<String, Object> model) {
+        return "auth_all";
+    }
+
+    @RequestMapping("/auth_ruk")
+    public String auth_ruk(Map<String, Object> model) {
+        return "auth_ruk";
+    }
+
+    @RequestMapping("/employees_list")
+    public String employees_list(Map<String, Object> model) {
+        return "employees_list";
+    }
+
+    @RequestMapping("/groups_list")
+    public String group_list(Map<String, Object> model) {
+        return "groups_list";
+    }
+
+    @RequestMapping("/programms_list")
+    public String programms_list(Map<String, Object> model) {
+        return "programms_list";
+    }
+
+    @RequestMapping("/settings_account")
+    public String settings_account(Map<String, Object> model) {
+        return "settings_account";
+    }
+
+    @RequestMapping("/students_list")
+    public String student_list(Map<String, Object> model) {
+        return "students_list";
     }
 
     @RequestMapping("/login")
