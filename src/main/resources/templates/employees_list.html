@@ -249,6 +249,45 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-xs-12">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить сотрудника</button>
+                    <div class="collapse" id="add">
+                        <form action="" method="POST" role="form">
+                            <br>
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Имя" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <select name="role" id="role" class="form-control" required="required">
+                                    <option disabled="disabled" selected="selected">Роль</option>
+                                    <option value="adm">Администратор</option>
+                                    <option value="teach">Учитель</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="re_password" class="form-control" id="re_password" placeholder="Повторите пароль" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" id="" placeholder="Email" required="required">
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </form>
+                        <hr>
+                    </div>
+
+                    <br><br>
+
                     <table class="table table-bordered table-hover">
                         <tr>
                             <th>#</th>
@@ -259,65 +298,33 @@
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Максим Гурченков</td>
+                            <td><a href="#">Максим Гурченков</a></td>
                             <td>maxim</td>
                             <td>Администратор</td>
                             <td>lab4up@gmail.com</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Дмитрий Дергунов</td>
+                            <td><a href="#">Дмитрий Дергунов</a></td>
                             <td>dergunov</td>
                             <td>Администратор</td>
                             <td>dmitry05670916@gmail.com</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Кайрат Сагалеев</td>
+                            <td><a href="#">Кайрат Сагалеев</a></td>
                             <td>somelogin</td>
                             <td>Администратор</td>
                             <td>some@gmail.com</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>Сергей Косов</td>
+                            <td><a href="#">Сергей Косов</a></td>
                             <td>other_some_login</td>
                             <td>Администратор</td>
                             <td>other_email@gmail.com</td>
                         </tr>
                     </table>
-
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить сотрудника</button>
-                    <div class="collapse" id="add">
-                        <form action="" method="POST" role="form">
-                            <br>
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="" placeholder="Имя" required="required">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="text" name="login" class="form-control" id="" placeholder="Логин" required="required">
-                            </div>
-
-                            <div class="form-group">
-                                <select name="role" id="input" class="form-control" required="required">
-                                    <option disabled="disabled" selected="selected">Роль</option>
-                                    <option value="adm">Администратор</option>
-                                    <option value="teach">Учитель</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control" id="" placeholder="Пароль" required="required">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control" id="" placeholder="Email" required="required">
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Добавить</button>
-                        </form>
-                    </div>
                 </div>
             </div>
             <br><br>

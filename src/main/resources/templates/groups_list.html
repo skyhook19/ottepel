@@ -249,34 +249,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-xs-12">
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <th>#</th>
-                            <th>Название</th>
-                            <th>Количество учеников</th>
-                            <th>Комментарий</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Парни</td>
-                            <td>4</td>
-                            <td>Нормальная группа</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Девчата</td>
-                            <td>3</td>
-                            <td>Ниче так группа</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Хоккеисты</td>
-                            <td>5</td>
-                            <td>Обычная группа</td>
-                        </tr>
-                    </table>
-
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить группа</button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#add" aria-expanded="false" aria-controls="add">Добавить группу</button>
                     <div class="collapse" id="add">
                         <form action="" method="POST" role="form">
                             <br>
@@ -295,12 +268,42 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea name="recommendation" id="recommendation" rows="4" class="form-control" placeholder="Рекомендации"></textarea>
+                                <textarea name="comment" id="comment" rows="4" class="form-control" placeholder="Комментарий"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Добавить</button>
+                            <button type="submit" class="btn btn-success">Добавить</button>
                         </form>
+                        <hr>
                     </div>
+
+                    <br><br>
+
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th>Количество учеников</th>
+                            <th>Комментарий</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#">Парни</a></td>
+                            <td>4</td>
+                            <td>Нормальная группа</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><a href="#">Девчата</a></td>
+                            <td>3</td>
+                            <td>Ниче так группа</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><a href="#">Хоккеисты</a></td>
+                            <td>5</td>
+                            <td>Обычная группа</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <!-- /.row -->
