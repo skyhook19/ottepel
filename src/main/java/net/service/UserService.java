@@ -150,4 +150,23 @@ public class UserService {
     public List<User> getAllUsersByLogin(List<String> logins) {
         return daoUser.findByLoginInOrderByLogin(logins);
     }
+
+    public User getUserByLogin(String login) {
+        return daoUser.findOneByLogin(login);
+    }
+
+    public boolean updateUser(String login, String email, String passwordOld, String pass, List<String> roles) {
+        User user = daoUser.findOneByLogin(login);
+        if (user == null) {
+            return false;
+        }
+        if (!user.getPassword().equals(new BCryptPasswordEncoder().encode(passwordOld))) {
+            return false;
+        }
+        user.setEmail(email);
+        user.setPassword(new BCryptPasswordEncoder().encode(pass));
+        user.setRoles(getRoleByRoleName(roles));
+        daoUser.save(user);
+        return true;
+    }
 }
