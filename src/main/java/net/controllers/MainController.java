@@ -1,6 +1,7 @@
 package net.controllers;
 
 import net.domain.users.Role;
+import net.domain.users.User;
 import net.dto.UserDto;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,38 +149,22 @@ public class MainController {
         return "programm";
     }
 
-    //// TODO: 18.03.17 переместить в контроллер для компаний
-    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.GET)
-    public String company(Map<String, Object> mdel) {
-        return "reg_company";
-    }
 
-    @RequestMapping(value = {"/reg_company"}, method = RequestMethod.POST)
-    public String company(@RequestParam("files") List<MultipartFile> files,
-                          @RequestParam("name") String name,
-                          @RequestParam("description") String description,
-                          Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить после спешного создания компании (для редиректа перед названием view написать "redirect:")
-        return "reg_company";
-    }
+    @RequestMapping("/dashboard")
+    public String dashboard(Map<String, Object> model){
+        User user = userService.getCurrentUser();
+        Role role = user.getRoles().get(0);
 
-    //// TODO: 18.03.17 переместить в контроллер для компаний
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.GET)
-    public String editCompany(@PathVariable("id") int id, Map<String, Object> mdel) {
-        ////// TODO: 18.03.17 получить программу из сервисного слоя и положить ее в модель
-        return "edit_company";
-    }
-
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.POST)
-    public String editCompany(@PathVariable("id") int id,
-                              @RequestParam("files") List<MultipartFile> files,
-                              @RequestParam("name") String name,
-                              @RequestParam("description") String description,
-                              Map<String, Object> model) {
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить после спешного создания компании (для редиректа перед названием view написать "redirect:")
-        return "reg_company";
+        switch (role.getAuthority()){
+            case "ROLE_CONTACT":
+                return "dashboard_student";
+            case "TEACHER":
+                return "dashboard_employee";
+            case "ROLE_RUK":
+                return "dashboard_ruk";
+            default:
+                return "login";
+        }
     }
 
 

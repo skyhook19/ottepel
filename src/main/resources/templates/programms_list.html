@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -218,19 +218,19 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Рабочий стол</a>
+                            <a th:href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Рабочий стол</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-user fa-fw"></i> Сотрудники</a>
+                            <a th:href="/employees_list"><i class="fa fa-user fa-fw"></i> Сотрудники</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-child fa-fw"></i> Ученики</a>
+                            <a th:href="/students_list"><i class="fa fa-child fa-fw"></i> Ученики</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-group fa-fw"></i> Группы</a>
+                            <a th:href="/groups_list"><i class="fa fa-group fa-fw"></i> Группы</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-cube fa-fw"></i> Программы</a>
+                            <a th:href="/programms_list"><i class="fa fa-cube fa-fw"></i> Программы</a>
                         </li>
                     </ul>
                 </div>

@@ -33,7 +33,7 @@ public class Application {
     protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        private UserDetailsService userDetailsService;
+        private  UserDetailsService userDetailsService;
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
@@ -43,7 +43,7 @@ public class Application {
                     .antMatchers("/**", "/").permitAll().anyRequest()
                     .fullyAuthenticated().and().formLogin().loginPage("/login")
                     .failureUrl("/login?error").permitAll()
-                    .defaultSuccessUrl("/adminka")
+                    .defaultSuccessUrl("/dashboard")
                     .and()
                     .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                     .permitAll();
