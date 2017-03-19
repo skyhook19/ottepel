@@ -8,4 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface DaoParagraf extends CrudRepository<Paragraf, Long> {
+    Paragraf findOneById(Long id);
 }

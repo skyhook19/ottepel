@@ -23,7 +23,7 @@ public class Group {
     private long id;
     private String name;
     @ManyToOne
-    private Сourses сourses;
+    private Course course;
     @ManyToMany
     private List<Lesson> lessons;
     @ManyToMany

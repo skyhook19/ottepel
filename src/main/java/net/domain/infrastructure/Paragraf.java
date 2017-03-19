@@ -18,4 +18,5 @@ public class Paragraf {
     @Id
     private long id;
     private String name;
+    private int order;
 }

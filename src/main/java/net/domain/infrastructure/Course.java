@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Сourses {
+public class Course {
     @Id
     private long id;
     private String name;
