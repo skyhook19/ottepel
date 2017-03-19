@@ -126,7 +126,7 @@ public class UserService {
 
     public boolean editRuc(String name, String login, String pass, String email, String oldPass) {
         User ruk = daoUser.findOneByLogin(login);
-        if (ruk.getPassword().equals(new BCryptPasswordEncoder().encode(oldPass))) {
+        if (verifyPassword(oldPass, ruk.getPassword())) {
             ruk.setPassword(new BCryptPasswordEncoder().encode(pass));
             ruk.setEmail(email);
             daoUser.save(ruk);
@@ -161,13 +161,18 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        if (!user.getPassword().equals(new BCryptPasswordEncoder().encode(passwordOld))) {
-          //  return false; // todo хз почему, но тут оно не корректно проверяет.
-        }
+        if (verifyPassword(passwordOld, user.getPassword())) return false;
         user.setEmail(email);
         user.setPassword(new BCryptPasswordEncoder().encode(pass));
         user.setRoles(getRoleByRoleName(roles));
         daoUser.save(user);
         return true;
+    }
+
+    private boolean verifyPassword(String passwordOld, String pass) {
+        if (!new BCryptPasswordEncoder().matches(passwordOld, pass)) {
+            return true;
+        }
+        return false;
     }
 }
