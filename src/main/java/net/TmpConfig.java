@@ -106,9 +106,9 @@ public class TmpConfig {
         Contact contact1 = createContact("vpupkin", account, "Вася", "Пупкин", "88005553535",
                 Gender.MALE, 16, "Родители", "Java", "", Arrays.asList(parent1));
         Contact contact2 = createContact("vnavashin", account, "Вася", "Навашин", "88005553537",
-                Gender.MALE, 16, "Родители", "Java", "", Arrays.asList(parent1));
+                Gender.MALE, 16, "Родители", "Java", "", Arrays.asList(parent2));
         Contact contact3 = createContact("vivanov", account, "Вася", "Иванов", "88005553539",
-                Gender.MALE, 16, "Родители", "Java", "", Arrays.asList(parent1));
+                Gender.MALE, 16, "Родители", "Java", "", Arrays.asList(parent3));
 
         Iterable<User> all = daoUser.findAll();
         System.out.println(all);
@@ -128,11 +128,11 @@ public class TmpConfig {
         lessons.add(l1);
         lessons.add(l2);
 
-        Course course1 = createCourse("Программирование на Java",
+       /* Course course1 = createCourse("Программирование на Java",
                 "Курс для обучения лет языку программирования Java",
                 30, "Для детей старше 16", paragraphs);
-
-        Group g1 = createGroup("Старшая группа", course1, lessons, Arrays.asList(contact1,contact2,contact3), Arrays.asList(employee));
+*/
+        // Group g1 = createGroup("Старшая группа", course1, lessons, Arrays.asList(contact1,contact2,contact3), Arrays.asList(employee));
 
     }
 
