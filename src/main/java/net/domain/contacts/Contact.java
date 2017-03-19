@@ -44,7 +44,10 @@ public class Contact {
     private boolean enabled;
 
     public String getGender() {
-        return gender.toString();
+        if (gender != null) {
+            return gender.toString();
+        }
+        return null;
     }
 
     public boolean isEnabled() {

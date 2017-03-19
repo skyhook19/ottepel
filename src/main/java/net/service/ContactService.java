@@ -57,11 +57,11 @@ public class ContactService {
         String login = userService.addContact(name, lastName);
         Parent parent1 = createParent(nameParent, phoneNumberParent, genderParent, ageParent, commentParent, positionParent);
         Parent parent2 = createParent(nameParent2, phoneNumberParent2, genderParent2, ageParent2, commentParent2, positionParent2);
-        Contact contact = createContact(account, name, phoneNumber, gender, age, dob, sourceOfCapital, interests, comment, login, parent1, parent2);
+        Contact contact = createContact(account, name, lastName, phoneNumber, gender, age, dob, sourceOfCapital, interests, comment, login, parent1, parent2);
         daoContact.save(contact);
     }
 
-    private Contact createContact(Account account, String name, String phoneNumber, String gender, int age, String dob,
+    private Contact createContact(Account account, String name, String lastName, String phoneNumber, String gender, int age, String dob,
                                   String sourceOfCapital, String interests, String comment, String login,
                                   Parent parent1, Parent parent2) {
         return Contact.builder()
@@ -75,6 +75,7 @@ public class ContactService {
                 .sourceOfCapital(sourceOfCapital)
                 .interests(interests)
                 .comment(comment)
+                .lastName(lastName)
                 .parents(Arrays.asList(parent1, parent2)).build();
     }
 

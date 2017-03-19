@@ -254,7 +254,7 @@
                         aria-expanded="false" aria-controls="add">Добавить ученика
                 </button>
                 <div class="collapse" id="add">
-                    <form th:action="@{/addNewContact}" method="POST" role="form">
+                    <form th:action="@{/addNewContact}" method="post" role="form">
                         <br>
                         <div class="form-group">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Имя"
@@ -304,7 +304,7 @@
                             <br>
                             <div class="form-group">
                                 <input type="text" name="parent1_name" class="form-control" id="parent1_name"
-                                       placeholder="Имя" required="required">
+                                       placeholder="Имя">
                             </div>
 
                             <div class="form-group">
@@ -346,7 +346,7 @@
                             <br>
                             <div class="form-group">
                                 <input type="text" name="parent2_name" class="form-control" id="parent2_name"
-                                       placeholder="Имя" required="required">
+                                       placeholder="Имя">
                             </div>
 
                             <div class="form-group">

@@ -27,6 +27,6 @@ public class ContactDto {
     private List<Parent> parents;
 
     public String getGender() {
-        return gender.toString();
+        return gender;
     }
 }
