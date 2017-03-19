@@ -20,7 +20,7 @@ public class EmployeesManager {
         this.roleManager = roleManager;
     }
 
-    public Object getEmployeesType(User user) {
+    public EmployeeType getEmployeesType(User user) {
         List<Role> roles = user.getRoles();
         if (roles.contains(roleManager.getRoleByRoleName("RUK"))) {
             return EmployeeType.RUK;
@@ -31,7 +31,7 @@ public class EmployeesManager {
         return null;
     }
 
-    public Object getEmployeesType(String login) {
+    public EmployeeType getEmployeesType(String login) {
         return getEmployeesType(daoUser.findOneByLogin(login));
     }
 }
