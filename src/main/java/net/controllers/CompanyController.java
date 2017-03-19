@@ -27,21 +27,20 @@ public class CompanyController {
         this.accountService = accountService;
     }
 
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.GET)
-    public String editCompany(@PathVariable("id") int id, Map<String, Object> mdel) {
+    @RequestMapping(value = {"/edit_company"}, method = RequestMethod.GET)
+    public String editCompany(Map<String, Object> mdel) {
         ////// TODO: 18.03.17 получить программу из сервисного слоя и положить ее в модель
+
         return "edit_company";
     }
 
-    @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.POST)
-    public String editCompany(@PathVariable("id") int id,
-                              @RequestParam("files") List<MultipartFile> files,
-                              @RequestParam("name") String name,
+    @RequestMapping(value = {"/edit_company"}, method = RequestMethod.POST)
+    public String editCompany(@RequestParam("name") String name,
                               @RequestParam("description") String description,
                               Map<String, Object> model) {
         ////// TODO: 18.03.17 создать сервис, который сможет сохранить эти данные
-        ////// TODO: 18.03.17 подумать куда редиректить после спешного создания компании (для редиректа перед названием view написать "redirect:")
-        return "reg_company";
+
+        return "edit_company";
     }
 
 

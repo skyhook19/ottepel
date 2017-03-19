@@ -250,7 +250,7 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-xs-12 col-md-9 col-lg-6">
-                <form th:action="${'/updateEmployee/'+employee.login}" method="POST" role="form">
+                <form th:action="'/updateEmployee/'+${employee.login}" method="POST" role="form">
                     <br>
                     <table class="table table-hover">
                         <tbody>

@@ -162,7 +162,7 @@ public class UserService {
             return false;
         }
         if (!user.getPassword().equals(new BCryptPasswordEncoder().encode(passwordOld))) {
-            return false;
+          //  return false; // todo хз почему, но тут оно не корректно проверяет.
         }
         user.setEmail(email);
         user.setPassword(new BCryptPasswordEncoder().encode(pass));

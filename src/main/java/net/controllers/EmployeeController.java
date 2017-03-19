@@ -98,7 +98,7 @@ public class EmployeeController {
                            @RequestParam(value = "email") String email) {
         boolean updated = employeeService.updateEmployee(login, pass, passwordOld, roles, email, name);
         model.put("updated", updated);
-        return "employee";
+        return "redirect:/employee/" + login;
     }
 
 
