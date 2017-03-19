@@ -33,7 +33,7 @@ public class Application {
     protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        private  UserDetailsService userDetailsService;
+        private UserDetailsService userDetailsService;
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
