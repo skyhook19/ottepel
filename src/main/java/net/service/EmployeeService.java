@@ -39,7 +39,7 @@ public class EmployeeService {
         return employees.stream().map(Employee::getLogin).collect(Collectors.toList());
     }
 
-    private Employee getCurrentEmployee() {
+    public Employee getCurrentEmployee() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return daoEmployee.findOneByLogin(authentication.getName());
     }

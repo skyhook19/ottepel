@@ -4,6 +4,8 @@ import net.dao.contacts.DaoContact;
 import net.domain.Gender;
 import net.domain.contacts.Contact;
 import net.domain.contacts.Parent;
+import net.domain.employee.Employee;
+import net.domain.infrastructure.Account;
 import net.dto.ContactDto;
 import net.service.converters.ConverterContact;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +22,21 @@ public class ContactService {
     private static final String DATE_TIME_FORMAT = "yyyy-MM-dd";
     private final DaoContact daoContact;
     private final UserService userService;
+    private final EmployeeService employeeService;
     private final ConverterContact converterContact;
 
     @Autowired
-    public ContactService(DaoContact daoContact, UserService userService, ConverterContact converterContact) {
+    public ContactService(DaoContact daoContact, UserService userService, EmployeeService employeeService, ConverterContact converterContact) {
         this.daoContact = daoContact;
         this.userService = userService;
+        this.employeeService = employeeService;
         this.converterContact = converterContact;
     }
 
     public List<ContactDto> getAllContacts() {
-        return converterContact.convertToContactDto(daoContact.findAll());
+        Employee currentEmployee = employeeService.getCurrentEmployee();
+        Account account = currentEmployee.getAccount();
+        return converterContact.convertToContactDto(daoContact.findByAccount(account));
     }
 
     public ContactDto getContact(String login) {
@@ -44,17 +50,22 @@ public class ContactService {
                            String commentParent, String positionParent,
                            String nameParent2, String phoneNumberParent2, String genderParent2, int ageParent2,
                            String commentParent2, String positionParent2) {
+
+        Employee currentEmployee = employeeService.getCurrentEmployee();
+        Account account = currentEmployee.getAccount();
+
         String login = userService.addContact(name, lastName);
         Parent parent1 = createParent(nameParent, phoneNumberParent, genderParent, ageParent, commentParent, positionParent);
         Parent parent2 = createParent(nameParent2, phoneNumberParent2, genderParent2, ageParent2, commentParent2, positionParent2);
-        Contact contact = createContact(name, phoneNumber, gender, age, dob, sourceOfCapital, interests, comment, login, parent1, parent2);
+        Contact contact = createContact(account, name, phoneNumber, gender, age, dob, sourceOfCapital, interests, comment, login, parent1, parent2);
         daoContact.save(contact);
     }
 
-    private Contact createContact(String name, String phoneNumber, String gender, int age, String dob,
+    private Contact createContact(Account account, String name, String phoneNumber, String gender, int age, String dob,
                                   String sourceOfCapital, String interests, String comment, String login,
                                   Parent parent1, Parent parent2) {
         return Contact.builder()
+                .account(account)
                 .name(name)
                 .phoneNumber(phoneNumber)
                 .gender(getGenderByGenderStr(gender))

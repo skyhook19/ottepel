@@ -46,38 +46,11 @@ public class TmpConfig {
 
     @PostConstruct
     public void init() {
-        initRyk();
-        newContact();
+        baseDataInit();
     }
 
-    private void newContact() {
-        Parent mama = Parent.builder()
-                .name("name")
-                .phoneNumber("3242-42342-234")
-                .gender(Gender.FEMALE)
-                .age(30)
-                .comment("comment")
-                .position("????").build();
 
-        Contact contact = Contact.builder()
-                .login("login")
-                .name("name")
-                .lastName("lastName")
-                .phoneNumber("12-231-123123")
-                .gender(Gender.MALE)
-                .age(12)
-                .dob(new Date())
-                .sourceOfCapital("mama")
-                .interests("bynthtcs")
-                .comment("comment")
-                .parents(Arrays.asList(mama)).build();
-
-        daoContact.save(contact);
-        List<Contact> all = daoContact.findAll();
-        System.out.println(all);
-    }
-
-    private void initRyk() {
+    private void baseDataInit() {
         daoRole.save(roles.values());
         User user = User.builder()
                 .email("user@mail.com")
@@ -113,6 +86,32 @@ public class TmpConfig {
 
         Iterable<User> all = daoUser.findAll();
         System.out.println(all);
+
+        Parent mama = Parent.builder()
+                .name("name")
+                .phoneNumber("3242-42342-234")
+                .gender(Gender.FEMALE)
+                .age(30)
+                .comment("comment")
+                .position("????").build();
+
+        Contact contactC = Contact.builder()
+                .login("lofff")
+                .account(account)
+                .name("testovii")
+                .lastName("lastName")
+                .phoneNumber("12-231-123123")
+                .gender(Gender.MALE)
+                .age(12)
+                .dob(new Date())
+                .sourceOfCapital("mama")
+                .interests("bynthtcs")
+                .comment("comment")
+                .parents(Arrays.asList(mama)).build();
+
+        daoContact.save(contactC);
+        List<Contact> allC = daoContact.findAll();
+        System.out.println(allC);
     }
 
 
