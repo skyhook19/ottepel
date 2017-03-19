@@ -254,7 +254,7 @@
                         aria-expanded="false" aria-controls="add">Добавить ученика
                 </button>
                 <div class="collapse" id="add">
-                    <form th:action="@{/addContact}" method="POST" role="form">
+                    <form th:action="@{/addNewContact}" method="POST" role="form">
                         <br>
                         <div class="form-group">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Имя"
@@ -270,7 +270,7 @@
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
                         </div>
 
-                        <div class="form-group">
+                        <div class="">
                             <select name="sex" id="sex" class="form-control">
                                 <option selected="selected" disabled="disbled">Пол</option>
                                 <option value="MALE">Мужской</option>
@@ -312,7 +312,7 @@
                                        placeholder="Телефон">
                             </div>
 
-                            <div class="form-group">
+                            <div class="">
                                 <select name="parent1_sex" id="parent1_sex" class="form-control">
                                     <option selected="selected" disabled="disbled">Пол</option>
                                     <option value="MALE">Мужской</option>
@@ -354,7 +354,7 @@
                                        placeholder="Телефон">
                             </div>
 
-                            <div class="form-group">
+                            <div class="">
                                 <select name="parent2_sex" id="parent2_sex" class="form-control">
                                     <option selected="selected" disabled="disbled">Пол</option>
                                     <option value="MALE">Мужской</option>
