@@ -350,6 +350,8 @@ jQuery(document).ready(function(){
                 contentType: "application/json",
                 dataType: 'json',
                 data: JSON.stringify(obj)
+            }).done(function(){
+                window.location.reload();
             });
         }
     });
