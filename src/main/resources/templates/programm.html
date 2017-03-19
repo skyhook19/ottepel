@@ -345,9 +345,11 @@ jQuery(document).ready(function(){
             console.log(obj);
 
             $.ajax({
-                url: '/',
-                type: 'GET',
-                data: obj
+                url: '/sort',
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify(obj)
             });
         }
     });
