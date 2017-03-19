@@ -1,9 +1,7 @@
 package net.controllers;
 
-import net.domain.employee.Employee;
 import net.domain.users.Role;
 import net.domain.users.User;
-import net.dto.EmployeeDto;
 import net.dto.UserDto;
 import net.service.EmployeeService;
 import net.service.UserService;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -140,11 +137,7 @@ public class MainController {
     /**
      * временно лежат тут
      */
-    @RequestMapping(value = {"/programm/{id}"}, method = RequestMethod.GET)
-    public String programm(@PathVariable(name = "id") int id, Map<String, Object> model) {
-        //// TODO: 18.03.17 положить в модель программу (достать из базы по id)
-        return "programm";
-    }
+
 
     @RequestMapping(value = {"/programm_sort/{id}"}, method = RequestMethod.POST)
     public String programm_sort(@PathVariable(name = "id") int id,

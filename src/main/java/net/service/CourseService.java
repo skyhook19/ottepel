@@ -22,20 +22,36 @@ public class CourseService {
     public void init() {
         List<Paragraph> paragraphList = Arrays.asList(
                 Paragraph.builder()
-                        .name("qqqqqqq1")
+                        .name("Вводное занятие")
+                        .description("Описание вводного занятия")
+                        .duration("1:30")
                         .number(1).build(),
                 Paragraph.builder()
-                        .name("qqqqqqq2")
+                        .name("Архитектура вычислительных систем ")
+                        .description("Описание архитектуры вычислительных систем")
+                        .duration("1:25")
                         .number(2).build(),
                 Paragraph.builder()
-                        .name("qqqqqqq3")
-                        .number(3).build()
+                        .name("Математическая кибернетика ")
+                        .description("Описание математической кибернетики")
+                        .duration("1:00")
+                        .number(3).build(),
+                Paragraph.builder()
+                        .name("Основы HTTP протоколов ")
+                        .description("Описание основ http протоколов")
+                        .duration("2:40")
+                        .number(4).build(),
+                Paragraph.builder()
+                        .name("Хакатон ")
+                        .description("Описание хакатона. Занятие на 48 часов. Без сна.")
+                        .duration("48:00")
+                        .number(5).build()
 
         );
         Course course = Course.builder()
                 .countLessons(12)
-                .description("qwe")
-                .name("aaaa")
+                .description("Описание программы. Программа ниче так, учиться можно. В общем круто все.")
+                .name("№ 1")
                 .recommendations("asdasda")
                 .paragraphs(paragraphList).build();
         daoCourses.save(course);

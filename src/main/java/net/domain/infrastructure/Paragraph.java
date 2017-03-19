@@ -21,5 +21,7 @@ public class Paragraph {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+    private String description;
+    private String duration;
     private int number;
 }
