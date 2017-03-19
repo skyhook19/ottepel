@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +39,8 @@ public class ContactController {
         return "students_list";
     }
 
-    @RequestMapping(value = {"/addContact"}, method = {RequestMethod.POST, RequestMethod.GET})
-    public String updateContactInfo(@RequestParam(value = "name", required = true) String name,
+    @RequestMapping(value = {"/addNewContact"}, method = {RequestMethod.POST})
+    public String addNewContact(@RequestParam(value = "name", required = true) String name,
                                     @RequestParam(value = "lastName", required = true) String lastName,
                                     @RequestParam(value = "phone", required = false) String phoneNumber,
                                     @RequestParam(value = "sex", required = false) String gender,
@@ -69,9 +70,42 @@ public class ContactController {
                 nameParent, phoneNumberParent, genderParent, 0, commentParent, positionParent,
                 nameParent2, phoneNumberParent2, genderParent2, 0, commentParent2, positionParent2);
 
-        List<ContactDto> allContacts = contactService.getAllContacts();
+        return "redirect:students_list";
+    }
 
-        model.put("contacts", allContacts);
-        return "students_list";
+    @RequestMapping(value = {"/updateContact"}, method = {RequestMethod.POST})
+    public String updateContact(@RequestParam(value = "login") String login,
+
+                                @RequestParam(value = "name", required = true) String name,
+                                @RequestParam(value = "lastName", required = true) String lastName,
+                                @RequestParam(value = "phone", required = false) String phoneNumber,
+                                @RequestParam(value = "sex", required = false) String gender,
+                                @RequestParam(value = "age", required = false) int age,
+                                @RequestParam(value = "bdate", required = false) Date dob,//дата рождения
+                                @RequestParam(value = "contact", required = false) String sourceOfCapital,
+                                @RequestParam(value = "interests", required = false) String interests,
+                                @RequestParam(value = "note", required = false) String comment,
+                                //parent
+                                @RequestParam(value = "parent1_name", required = false) String nameParent,
+                                @RequestParam(value = "parent1_phone", required = false) String phoneNumberParent,
+                      //          @RequestParam(value = "parent1_sex", required = false) String genderParent,
+                                @RequestParam(value = "parent1_age", required = false) String ageParent,
+                                @RequestParam(value = "parent1_position", required = false) String commentParent,
+                                @RequestParam(value = "parent1_note", required = false) String positionParent,
+                                //paret2
+                                @RequestParam(value = "parent2_name", required = false) String nameParent2,
+                                @RequestParam(value = "parent2_phone", required = false) String phoneNumberParent2,
+                      //          @RequestParam(value = "parent2_sex", required = false) String genderParent2,
+                                @RequestParam(value = "parent2_age", required = false) String ageParent2,
+                                @RequestParam(value = "parent2_position", required = false) String commentParent2,
+                                @RequestParam(value = "parent2_note", required = false) String positionParent2,
+                                Map<String, Object> model)
+
+    {
+        contactService.updateContact(login, name, lastName, phoneNumber, age, dob, sourceOfCapital, interests, comment,
+                nameParent, phoneNumberParent, commentParent, positionParent,
+                nameParent2, phoneNumberParent2, commentParent2, positionParent2);
+
+        return "/contact/" + login;
     }
 }

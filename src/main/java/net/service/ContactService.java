@@ -107,4 +107,46 @@ public class ContactService {
         }
         return date;
     }
+
+    public void updateContact(String login, String name, String lastName, String phoneNumber,
+                              int age,
+                              /*String gender,*/ Date dob, String sourceOfCapital,
+                              String interests, String comment,
+
+                              String nameParent,
+                              String phoneNumberParent,
+                           //   String genderParent,
+                              String commentParent,
+                              String positionParent,
+
+                              String nameParent2,
+                              String phoneNumberParent2,
+                         //     String genderParent2,
+                              String commentParent2,
+                              String positionParent2)
+    {
+        Contact contact = daoContact.findOneByLogin(login);
+        contact.setName(name);
+        contact.setLastName(lastName);
+        contact.setPhoneNumber(phoneNumber);
+        contact.setAge(age);
+        contact.setDob(dob);
+        contact.setSourceOfCapital(sourceOfCapital);
+        contact.setInterests(interests);
+        contact.setComment(comment);
+
+        Parent patent1 = contact.getParents().get(0);
+        patent1.setName(nameParent);
+        patent1.setPhoneNumber(phoneNumberParent);
+        patent1.setComment(commentParent);
+        patent1.setPosition(positionParent);
+
+        Parent patent2 = contact.getParents().get(1);
+        patent2.setName(nameParent2);
+        patent2.setPhoneNumber(phoneNumberParent2);
+        patent2.setComment(commentParent2);
+        patent2.setPosition(positionParent2);
+
+        daoContact.save(contact);
+    }
 }
