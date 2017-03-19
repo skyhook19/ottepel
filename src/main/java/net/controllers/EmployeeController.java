@@ -51,8 +51,6 @@ public class EmployeeController {
     }
     */
 
-    // TODO /company GET запрос
-
 
     //addEmployee
     @RequestMapping(value = {"/addEmployee"}, method = RequestMethod.POST)
@@ -78,22 +76,6 @@ public class EmployeeController {
         return "employees_list";
     }
 
-    //reg_ruk
-    @RequestMapping(value = {"/reg_ruk"}, method = RequestMethod.GET)
-    public String regRuk(Map<String, Object> mdel) {
-        return "reg_ruk";
-    }
-
-    //reg_ruk
-    @RequestMapping(value = {"/reg_ruk"}, method = RequestMethod.POST)
-    public String addRuk(Map<String, Object> mdel,
-                         @RequestParam(value = "name", required = true) String name,
-                         @RequestParam(value = "login", required = true) String login,
-                         @RequestParam(value = "password", required = true) String pass,
-                         @RequestParam(value = "email", required = true) String email) {
-        userService.addRuc(name, login, pass, email);
-        return "redirect:reg_company";
-    }
 
     //employee
     @RequestMapping(value = {"/employee/{login}"}, method = RequestMethod.GET)

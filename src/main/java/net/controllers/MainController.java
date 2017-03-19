@@ -1,8 +1,11 @@
 package net.controllers;
 
+import net.domain.employee.Employee;
 import net.domain.users.Role;
 import net.domain.users.User;
+import net.dto.EmployeeDto;
 import net.dto.UserDto;
+import net.service.EmployeeService;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +22,12 @@ import java.util.Map;
 public class MainController {
 
     private final UserService userService;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public MainController(UserService userService) {
+    public MainController(UserService userService, EmployeeService employeeService) {
         this.userService = userService;
+        this.employeeService = employeeService;
     }
 
     @RequestMapping("/auth_all")

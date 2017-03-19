@@ -121,7 +121,7 @@ public class UserService {
 
 
     public void addRuc(String name, String login, String pass, String email) {
-        addCollaborator(login, pass, Arrays.asList("ROLE_RUK"), email);
+        addCollaborator(login, pass, Arrays.asList("RUK"), email);
     }
 
     public boolean editRuc(String name, String login, String pass, String email, String oldPass) {
