@@ -1,9 +1,11 @@
 package net.controllers;
 
+import net.domain.users.User;
 import net.dto.EmployeeDto;
 import net.service.EmployeeService;
 import net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +63,7 @@ public class EmployeeController {
                                @RequestParam(value = "email") String email,
                                @RequestParam(value = "role") List<String> roles
     ) {
-        userService.addCollaborator(login, pass, roles, email);
+        userService.addUser(login, pass, roles, email);
         employeeService.addEmployee(login, name);
         return "redirect:employees_list";
     }
