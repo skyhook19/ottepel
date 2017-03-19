@@ -205,7 +205,7 @@
             </li>
             <!-- /.dropdown -->
             <li class="dropdown">
-                <a href="/logout">
+                <a href="#">
                     <i class="fa fa-sign-out fa-fw"></i>
                 </a>
                 <!-- /.dropdown-user -->
@@ -218,19 +218,19 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Рабочий стол</a>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Рабочий стол</a>
                     </li>
                     <li>
-                        <a href="/employees_list"><i class="fa fa-user fa-fw"></i> Сотрудники</a>
+                        <a href="index.html"><i class="fa fa-user fa-fw"></i> Сотрудники</a>
                     </li>
                     <li>
-                        <a href="/students_list"><i class="fa fa-child fa-fw"></i> Ученики</a>
+                        <a href="index.html"><i class="fa fa-child fa-fw"></i> Ученики</a>
                     </li>
                     <li>
-                        <a href="/groups_list"><i class="fa fa-group fa-fw"></i> Группы</a>
+                        <a href="index.html"><i class="fa fa-group fa-fw"></i> Группы</a>
                     </li>
                     <li>
-                        <a href="/programms_list"><i class="fa fa-cube fa-fw"></i> Программы</a>
+                        <a href="index.html"><i class="fa fa-cube fa-fw"></i> Программы</a>
                     </li>
                 </ul>
             </div>
@@ -240,65 +240,65 @@
     </nav>
 
 <script>
-    function thTurn90deg(el){
-        console.log($(el).width());
-        console.log($(el).height());
-        var w = $(el).outerWidth();
-        // $(el).css('width','62px');
-        // $(el).css('height',w);
-        $(el).css('transform','rotate(90deg)');
-    }
 
-    function tableTranspose(id){
-        var table = $('#'+id);
-        var matrix = {};
-        table.find('tr').each(function(index0, el0) {
-            var matrix1 = {};
-            $(el0).find('th,td').each(function(index1, el1) {
-                matrix1[index1] = $(el1).html();
-            });
-            matrix[index0] = matrix1;
+function tableTranspose(id){
+    var table = $('#'+id);
+    var matrix = {};
+    table.find('tr').each(function(index0, el0) {
+        var matrix1 = {};
+        $(el0).find('th,td').each(function(index1, el1) {
+            matrix1[index1] = $(el1).html();
         });
-        var tableText = '<thead>';
-        for (var i = 0; i < Object.keys(matrix[0]).length; i++) {
-            tableText+='<tr>';
-            for(var j = 0; j < Object.keys(matrix).length; j++){
-                if(i==0){
-                    if(j==0)
-                        tableText+='<th class="text-center">'+matrix[j][i]+'</th>';
-                    else
-                        tableText+='<th>'+matrix[j][i]+'</th>';
-                } else {
-                    if(j==0)
-                        tableText+='<td class="text-left">'+matrix[j][i]+'</td>';
-                    else {
-                        var varClass = '';
-                        switch(matrix[j][i]){
-                            case '+':
-                                varClass = 'bg-success';
-                            break;
-                            case '.':
-                                varClass = 'bg-warning';
-                            break;
-                            case '?':
-                                varClass = 'bg-info';
-                            break;
-                            case '-':
-                                varClass = 'bg-danger';
-                            break;
-                        }
-                        tableText+='<td class="'+varClass+'">'+matrix[j][i]+'</td>';
+        matrix[index0] = matrix1;
+    });
+    var tableText = '<thead>';
+    for (var i = 0; i < Object.keys(matrix[0]).length; i++) {
+        tableText+='<tr>';
+        for(var j = 0; j < Object.keys(matrix).length; j++){
+            if(i==0){
+                if(j==0)
+                    tableText+='<th class="text-center">'+matrix[j][i]+'</th>';
+                else
+                    tableText+='<th>'+matrix[j][i].split(' ').join('\n')+'</th>';
+
+                console.log(matrix[j][i]);
+            } else {
+                if(j==0)
+                    tableText+='<td class="text-left">'+matrix[j][i]+'</td>';
+                else {
+                    var varClass = '';
+                    switch(matrix[j][i]){
+                        case '+':
+                            varClass = 'bg-success';
+                        break;
+                        case '.':
+                            varClass = 'bg-warning';
+                        break;
+                        case '?':
+                            varClass = 'bg-info';
+                        break;
+                        case '-':
+                            varClass = 'bg-danger';
+                        break;
                     }
+                    tableText+='<td class="'+varClass+'">'+matrix[j][i]+'</td>';
                 }
             }
-            tableText+='</tr>';
-            if(i==0)
-                tableText+='</thead><tbody>';
-
         }
-        tableText+='</tbody>';
-        table.html(tableText);
+        tableText+='</tr>';
+        if(i==0)
+            tableText+='</thead><tbody>';
+
     }
+    tableText+='</tbody>';
+    table.html(tableText);
+}
+
+function replaceSpaceByNewline(id){
+    $('#'+id).find('th+th').each(function(index, el) {
+        $(el).text($(el).text().split(' ').join('\n'));
+    });
+}
 </script>
 
     <div id="page-wrapper">
@@ -312,13 +312,36 @@
         <div class="row">
             <div class="col-md-8">
                 <div style="overflow-x:scroll">
-                    <table class="table table-bordered pre-scrollable m0 text-center" id="matrix">
+                    <style>
+                        .group-table{
+                            table-layout: fixed;
+
+                        }
+                        .group-table * {
+                            position: relative;
+                            vertical-align: middle;
+                        }
+                        .group-table thead tr th+th{
+                            vertical-align: top;
+                            text-align: left;
+                            /* writing-mode: vertical-rl;
+                            -webkit-writing-mode: bt-rl; */
+                            font-size: 0.8em;
+                        }
+                        .group-table th:first-child{
+                            width: 200px;
+
+                            overflow: hidden;
+                        }
+                        .group-table
+                    </style>
+                    <table class="group-table table table-bordered pre-scrollable m0 text-center" id="matrix">
                         <thead>
                             <tr>
                                 <th class="text-center"><a href="javascript:void(0)" onclick="tableTranspose('matrix')" class="btn btn-lg"><i class="fa fa-refresh"></i></a></th>
                                 <th>Вводное занятие</th>
-                                <th>Архитектура вычислительных систем</th>
-                                <th>Математическая кибернетика</th>
+                                <th>Архитектура вычисл. систем</th>
+                                <th>Теоретическая информатика</th>
                                 <th>Основы HTTP протоколов</th>
                                 <th>Хакатон</th>
                             </tr>
@@ -442,27 +465,6 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/js/script.js"></script>
-
-<script>
-jQuery(document).ready(function(){
-    $('#sortableList').sortable({
-        update: function(event,ui){
-            var obj = {};
-            ui.item.parent().find('.list-group-item').each(function(index, el) {
-                console.log(index);
-                var ind = el.id.substr(7);
-                obj[ind] = index;
-            });
-
-            $.ajax({
-                url: '/',
-                type: 'GET',
-                data: obj
-            });
-        }
-    });
-});
-</script>
 
 </body>
 

@@ -14,4 +14,5 @@ jQuery(document).ready(function() {
         e.preventDefault();
         console.log('BOTTOM');
     });
+    replaceSpaceByNewline('matrix');
 });
