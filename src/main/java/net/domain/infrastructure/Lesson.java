@@ -6,9 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -17,8 +15,9 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Lesson {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
-    private Paragraf paragraf;
-    private int order;
+    private Paragraph paragraph;
+    private int number;
 }

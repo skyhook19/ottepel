@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import net.domain.contacts.Contact;
 import net.domain.employee.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -20,7 +17,8 @@ import java.util.List;
 @Entity
 public class Group {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     @ManyToOne
     private Course course;
