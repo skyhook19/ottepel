@@ -243,7 +243,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Ученик: Иван Иванов</h1>
+                <h1 th:text="${contact.name}" class="page-header">Ученик: Иван Иванов</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -256,16 +256,16 @@
                         <tbody>
                             <tr>
                                 <td>Имя</td>
-                                <td><input type="text" name="name" class="form-control" id="name" placeholder="Имя"
+                                <td><input type="text" th:value="${contact.name}"  name="name" class="form-control" id="name" placeholder="Имя"
                                required="required"></td>
                             </tr>
                             <tr>
                                 <td>Фамилия</td>
-                                <td><input type="text" name="lastName" class="form-control" id="lastName" placeholder="Фамилия" required="required"></td>
+                                <td><input type="text" th:value="${contact.lastName}" name="lastName" class="form-control" id="lastName" placeholder="Фамилия" required="required"></td>
                             </tr>
                             <tr>
                                 <td>Телефон</td>
-                                <td><input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон"></td>
+                                <td><input type="text" th:value="${contact.phoneNumber}" name="phone" class="form-control" id="phone" placeholder="Телефон"></td>
                             </tr>
                             <tr>
                                 <td>Пол</td>
@@ -279,15 +279,15 @@
                             </tr>
                             <tr>
                                 <td>Дата рождения</td>
-                                <td><input type="text" name="bdate" class="form-control" id="bdate" placeholder="Дата рождения"></td>
+                                <td><input type="text" th:value="${contact.dob}" name="bdate" class="form-control" id="bdate" placeholder="Дата рождения"></td>
                             </tr>
                             <tr>
                                 <td>Источник контакта</td>
-                                <td><input type="text" name="contact" class="form-control" id="contact" placeholder="Источник контакта"></td>
+                                <td><input type="text" th:value="${contact.sourceOfCapital}"  name="contact" class="form-control" id="contact" placeholder="Источник контакта"></td>
                             </tr>
                             <tr>
                                 <td>Интересы</td>
-                                <td><textarea name="interests" id="interests" rows="4" class="form-control" placeholder="Интересы"></textarea></td>
+                                <td><textarea name="interests" th:value="${contact.interests}"  id="interests" rows="4" class="form-control" placeholder="Интересы"></textarea></td>
                             </tr>
                             <tr>
                                 <td>Заметка</td>

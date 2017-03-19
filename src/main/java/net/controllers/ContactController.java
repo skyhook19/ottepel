@@ -27,7 +27,7 @@ public class ContactController {
                                     Map<String, Object> model) {
         ContactDto contact = contactService.getContact(login);
         model.put("contact", contact);
-        return "";
+        return "student";
     }
 
     @RequestMapping("/students_list")
