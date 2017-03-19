@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="" lang="en">
 
 <head>
 
@@ -243,8 +243,9 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Программа № 1</h1>
-                <p>Описание программы. Программа ниче так, учиться можно. В общем круто все.</p>
+                <h1 th:text="${'Программа '+course.name}" class="page-header">Программа № 1</h1>
+                <p th:text="${course.description}">Описание программы. Программа ниче так, учиться можно. В общем круто
+                    все.</p>
                 <br>
             </div>
             <!-- /.col-lg-12 -->
@@ -253,25 +254,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="list-group" id="sortableList">
-                    <a href="javascript:void(0)" id="lesson_1" class="list-group-item">
-                        <h4>Вводное занятие <span class="label label-default">1:30</span></h4>
-                        <p>Описание вводного занятия</p>
-                    </a>
-                    <a href="javascript:void(0)" id="lesson_2" class="list-group-item">
-                        <h4>Архитектура вычислительных систем <span class="label label-default">1:25</span></h4>
-                        <p>Описание архитектуры вычислительных систем</p>
-                    </a>
-                    <a href="javascript:void(0)" id="lesson_3" class="list-group-item">
-                        <h4>Математическая кибернетика <span class="label label-default">1:00</span></h4>
-                        <p>Описание математической кибернетики</p>
-                    </a>
-                    <a href="javascript:void(0)" id="lesson_4" class="list-group-item">
-                        <h4>Основы HTTP протоколов <span class="label label-default">2:40</span></h4>
-                        <p>Описание основ http протоколов</p>
-                    </a>
-                    <a href="javascript:void(0)" id="lesson_5" class="list-group-item">
-                        <h4>Хакатон <span class="label label-default">48:00</span></h4>
-                        <p>Описание хакатона. Занятие на 48 часов. Без сна.</p>
+                    <a th:each="paragraph : ${course.paragraphs}" href="javascript:void(0)" id="lesson_1"
+                       class="list-group-item">
+                        <h4>
+                            <span th:text="${paragraph.name}">Вводное занятие</span>
+                            <span class="label label-default" th:text="${paragraph.duration}">1:30</span>
+                        </h4>
+                        <p th:text="${paragraph.description}">Описание вводного занятия</p>
                     </a>
                 </div>
                 <button type="submit" class="btn btn-success">Добавить занятие</button>
@@ -285,19 +274,24 @@
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Название">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="description" id="description" rows="4" placeholder="Описание"></textarea>
+                                <textarea class="form-control" name="description" id="description" rows="4"
+                                          placeholder="Описание"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="material" id="material" placeholder="Учебный материал">
+                                <input type="text" class="form-control" name="material" id="material"
+                                       placeholder="Учебный материал">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="methodic" id="methodic" placeholder="Методические материалы">
+                                <input type="text" class="form-control" name="methodic" id="methodic"
+                                       placeholder="Методические материалы">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="timelong" id="timelong" placeholder="Длительность">
+                                <input type="text" class="form-control" name="timelong" id="timelong"
+                                       placeholder="Длительность">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="recommendation" id="recommendation" placeholder="Рекомендации">
+                                <input type="text" class="form-control" name="recommendation" id="recommendation"
+                                       placeholder="Рекомендации">
                             </div>
                             <button type="submit" class="btn btn-success">Сохранить</button>
                         </div>
@@ -333,29 +327,29 @@
 <script src="/js/script.js"></script>
 
 <script>
-jQuery(document).ready(function(){
-    $('#sortableList').sortable({
-        update: function(event,ui){
-            var obj = {};
-            ui.item.parent().find('.list-group-item').each(function(index, el) {
-                console.log(index);
-                var ind = el.id.substr(7);
-                obj[ind] = index;
-            });
-            var programmID = window.location.pathname.split('/')[2];
-            console.log(obj);
-            $.ajax({
-                url: '/sort/' + programmID,
-                type: 'POST',
-                contentType: "application/json",
-                dataType: 'json',
-                data: JSON.stringify(obj)
-            }).done(function(){
-                window.location.reload();
-            });
-        }
+    jQuery(document).ready(function () {
+        $('#sortableList').sortable({
+            update: function (event, ui) {
+                var obj = {};
+                ui.item.parent().find('.list-group-item').each(function (index, el) {
+                    console.log(index);
+                    var ind = el.id.substr(7);
+                    obj[ind] = index;
+                });
+                var programmID = window.location.pathname.split('/')[2];
+                console.log(obj);
+                $.ajax({
+                    url: '/sort/' + programmID,
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify(obj)
+                }).done(function () {
+                    window.location.reload();
+                });
+            }
+        });
     });
-});
 
 </script>
 
