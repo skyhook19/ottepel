@@ -1,5 +1,8 @@
 package net.controllers;
 
+import net.domain.infrastructure.Account;
+import net.service.AccountService;
+import net.service.EmployeeService;
 import net.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +18,13 @@ import java.util.Map;
 @Controller
 public class CompanyController {
     private final UserService userService;
+    private final EmployeeService employeeService;
+    private final AccountService accountService;
 
-    public CompanyController(UserService userService) {
+    public CompanyController(UserService userService, EmployeeService employeeService, AccountService accountService) {
         this.userService = userService;
+        this.employeeService = employeeService;
+        this.accountService = accountService;
     }
 
     @RequestMapping(value = {"/edit_company/{id}"}, method = RequestMethod.GET)
@@ -53,8 +60,10 @@ public class CompanyController {
                               @RequestParam(value = "account_name", required = true) String account_name,
                           @RequestParam("account_description") String description,
                           Map<String, Object> model) {
+
+        Account account = accountService.createAccount(account_name, description);
+        employeeService.createEmployee(account, login, name);
         userService.addRuc(name, login, pass, email);
-        ////// TODO: 18.03.17 создать сервис, который сможет сохранить данные аккаунта
 
         return "redirect:login";
     }

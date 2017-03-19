@@ -70,7 +70,7 @@ public class UserService {
         return daoRole.findAll();
     }
 
-    public boolean addCollaborator(String login, String pass, List<String> rolesName, String email) {
+    public boolean addUser(String login, String pass, List<String> rolesName, String email) {
         if (daoUser.findOneByLogin(login) != null) {
             return false;
         }
@@ -121,7 +121,7 @@ public class UserService {
 
 
     public void addRuc(String name, String login, String pass, String email) {
-        addCollaborator(login, pass, Arrays.asList("RUK"), email);
+        addUser(login, pass, Arrays.asList("RUK"), email);
     }
 
     public boolean editRuc(String name, String login, String pass, String email, String oldPass) {

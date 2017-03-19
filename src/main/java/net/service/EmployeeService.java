@@ -51,7 +51,10 @@ public class EmployeeService {
 
     public void addEmployee(String login, String name) {
         Account account = getCurrentEmployee().getAccount();
+        createEmployee(account, login, name);
+    }
 
+    public void createEmployee(Account account, String login, String name) {
         Employee employee = Employee.builder()
                 .login(login)
                 .name(name)

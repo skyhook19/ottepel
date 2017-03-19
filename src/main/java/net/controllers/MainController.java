@@ -75,7 +75,7 @@ public class MainController {
                                   @RequestParam("password") String pass,
                                   @RequestParam(value = "roles", required = false) List<String> rolesName,
                                   Map<String, Object> model) {
-        boolean saved = userService.addCollaborator(login, pass, rolesName, email);
+        boolean saved = userService.addUser(login, pass, rolesName, email);
         if (!saved) {
             model.put("error", "Пользователь с таким логином уже существует.");
         } else {
